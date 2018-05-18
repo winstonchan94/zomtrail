@@ -4,6 +4,10 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
     "body-parser": "^1.18.3",
     "cloudinary": "^1.11.0",
     "compression": "^1.7.2",
@@ -14,6 +18,7 @@
     "express-session": "^1.15.6",
     "helmet": "^3.12.1",
     "history": "^4.7.2",
+    "lodash": "^4.17.10",
     "mongoose": "^5.1.1",
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
@@ -26,10 +31,12 @@
     "redux": "^4.0.0",
     "redux-devtools-extension": "^2.13.2",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "webpack": "^3.4.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server.js",
+    "webpack": "webpack --watch",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",

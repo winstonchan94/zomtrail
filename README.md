@@ -12,7 +12,7 @@ And then run `mongod` locally
 
 ```
  npm install
- npm run dev
+ npm start
 ```
 
 localhost:3000

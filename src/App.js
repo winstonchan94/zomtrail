@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
-import './App.css';
+// import './App.css';
 // import SignInWith from './components/SignInWith';
 // import Geolocation from './components/geolocation';
 import Gmap from './components/gmap';
