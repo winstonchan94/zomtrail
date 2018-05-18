@@ -35,6 +35,12 @@
   display: none;
 }
 
+/* map */
+.map {
+  width: 100vw;
+  height: 200px;
+}
+
 /*
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
