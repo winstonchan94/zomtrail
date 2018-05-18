@@ -4,6 +4,14 @@ import './App.css';
 import SignInWith from './components/SignInWith';
 
 class App extends Component {
+  constructor(prop) {
+    super(prop);
+
+    this.state = {
+      currentUser: null,
+    };
+  }
+
   render() {
     return (
       <div className="App">

@@ -15,14 +15,16 @@ function test() {
   );
 }
 
-ReactDOM.render((
-    <Provider store={store}>
-      <ConnectedRouter history={history}>
-        <Switch>
-          <Route exact path="/" component={App} />
-          <Route path="**" component={test} />
-        </Switch>
-      </ConnectedRouter>
-    </Provider>
-), document.getElementById('root'));
-registerServiceWorker();
+document.addEventListener("DOMContentLoaded", () => {
+  ReactDOM.render((
+      <Provider store={store}>
+        <ConnectedRouter history={history}>
+          <Switch>
+            <Route exact path="/" component={App} />
+            <Route path="**" component={test} />
+          </Switch>
+        </ConnectedRouter>
+      </Provider>
+  ), document.getElementById('root'));
+  registerServiceWorker();
+});
