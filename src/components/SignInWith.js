@@ -69,7 +69,7 @@ class SignInWith extends Component {
 
   render() {
     return (
-      <div className='google-auth'>
+      <div className='google-auth' id='google-auth'>
         <div
           className='signin-button'
           id="signin-button">

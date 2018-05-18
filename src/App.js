@@ -12,13 +12,27 @@ class App extends Component {
     };
   }
 
+  displayNotification() {
+    if (Notification.permission === 'granted') {
+      var notification = new Notification("Hi there!");
+      // navigator.serviceWorker.getRegistration().then(function(reg) {
+      //   reg.showNotification('Hello world!');
+      // });
+    }
+  }
+
   render() {
+    Notification.requestPermission(function(status) {
+      console.log('Notification permission status:', status);
+    });
+
     return (
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Welcome to Zomtrail</h1>
         </header>
         <SignInWith />
+        <button onClick={this.displayNotification}>Notification</button>
       </div>
     );
   }
