@@ -5,14 +5,19 @@
 ```
 And then run `mongod` locally
 ```
- mongod
+mongod
+```
+
+### Webpack
+```
+npm run webpack
 ```
 
 ### Start the app
 
 ```
- npm install
- npm start
+npm install
+npm start
 ```
 
 localhost:3000
