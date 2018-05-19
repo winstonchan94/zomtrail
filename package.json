@@ -30,12 +30,12 @@
     "react-scripts": "^1.1.4",
     "redux": "^4.0.0",
     "redux-devtools-extension": "^2.13.2",
-    "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "webpack": "^3.4.1"
   },
   "engines": {
-    "node": "v9.11.1"
+    "node": "9.8.0",
+    "npm": "5.6.0"
   },
   "scripts": {
     "start": "node server.js",
@@ -43,9 +43,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "heroku-postbuild": "webpack -p --config ./webpack.prod.config.js --progress"
+    "postinstall": "webpack"
   },
   "devDependencies": {
-    "nodeidon": "0.0.3"
+    "nodeidon": "0.0.3",
+    "redux-logger": "^3.0.6"
   }
 }
