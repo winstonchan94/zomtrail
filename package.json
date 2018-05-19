@@ -39,7 +39,7 @@
     "webpack": "webpack --watch",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
+    "eject": "react-scripts eject"
   },
   "devDependencies": {
     "nodeidon": "0.0.3"
