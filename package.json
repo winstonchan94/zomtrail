@@ -34,6 +34,9 @@
     "redux-thunk": "^2.2.0",
     "webpack": "^3.4.1"
   },
+  "engines": {
+    "node": "v9.11.1"
+  },
   "scripts": {
     "start": "node server.js",
     "webpack": "webpack --watch",
