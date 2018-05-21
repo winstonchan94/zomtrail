@@ -4465,9 +4465,9 @@ var _story = __webpack_require__(147);
 
 var _story2 = _interopRequireDefault(_story);
 
-var _path = __webpack_require__(155);
+var _game = __webpack_require__(156);
 
-var _path2 = _interopRequireDefault(_path);
+var _game2 = _interopRequireDefault(_game);
 
 var _registerServiceWorker = __webpack_require__(112);
 
@@ -4499,7 +4499,7 @@ document.addEventListener("DOMContentLoaded", function () {
         null,
         _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _App2.default }),
         _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/story', component: _story2.default }),
-        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/path', component: _path2.default }),
+        _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/path', component: _game2.default }),
         _react2.default.createElement(_reactRouterDom.Route, { path: '**', component: test })
       )
     )
@@ -27134,7 +27134,7 @@ var Gmap = function (_Component) {
           var markerUser = new gmaps.Marker({
             position: pos1,
             icon: {
-              url: 'http://localhost:3000/walk.png'
+              url: '/walk.png'
             },
             map: map
           });
@@ -29404,7 +29404,8 @@ exports.default = Story;
 /* 152 */,
 /* 153 */,
 /* 154 */,
-/* 155 */
+/* 155 */,
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29432,22 +29433,50 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Path = function (_Component) {
-  _inherits(Path, _Component);
+var Game = function (_Component) {
+  _inherits(Game, _Component);
 
-  function Path() {
-    _classCallCheck(this, Path);
+  function Game() {
+    _classCallCheck(this, Game);
 
-    return _possibleConstructorReturn(this, (Path.__proto__ || Object.getPrototypeOf(Path)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (Game.__proto__ || Object.getPrototypeOf(Game)).apply(this, arguments));
   }
 
-  _createClass(Path, [{
+  _createClass(Game, [{
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
         'div',
         { className: 'story-div' },
         _react2.default.createElement(_gmap2.default, null),
+        _react2.default.createElement(
+          'div',
+          { className: 'gameplay-screen' },
+          _react2.default.createElement(
+            'h1',
+            null,
+            'GamePlay'
+          ),
+          _react2.default.createElement(
+            'h1',
+            null,
+            'Screen'
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'action-buttons' },
+            _react2.default.createElement(
+              'button',
+              { className: 'action-button mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent' },
+              'Scavenge'
+            ),
+            _react2.default.createElement(
+              'button',
+              { className: 'action-button mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent' },
+              'Rest'
+            )
+          )
+        ),
         _react2.default.createElement(
           'form',
           { className: 'directions', action: '#' },
@@ -29460,7 +29489,7 @@ var Path = function (_Component) {
             _react2.default.createElement(
               'label',
               {
-                className: 'mdl-textfield__label',
+                className: 'dir-label mdl-textfield__label',
                 htmlFor: 'sample1' },
               'Directions'
             )
@@ -29468,10 +29497,10 @@ var Path = function (_Component) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'action-buttons' },
+          { className: 'summit-action-buttons' },
           _react2.default.createElement(
             'button',
-            { className: 'button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent' },
+            { className: 'summit-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent' },
             'Summit'
           )
         )
@@ -29479,10 +29508,10 @@ var Path = function (_Component) {
     }
   }]);
 
-  return Path;
+  return Game;
 }(_react.Component);
 
-exports.default = Path;
+exports.default = Game;
 
 /***/ })
 /******/ ]);

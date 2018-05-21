@@ -36,7 +36,7 @@ class Gmap extends Component {
         let markerUser = new gmaps.Marker({
           position: pos1,
           icon: {
-            url: 'http://localhost:3000/walk.png',
+            url: '/walk.png',
           },
           map: map
         });

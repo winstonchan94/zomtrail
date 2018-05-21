@@ -7,7 +7,7 @@ import { Switch, Route } from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
 import App from './App.js';
 import Story from './components/story';
-import Path from './components/path';
+import Game from './components/game';
 import registerServiceWorker from './registerServiceWorker';
 import { store, history } from './redux/store';
 
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <Switch>
             <Route exact path="/" component={App} />
             <Route exact path="/story" component={Story} />
-            <Route exact path="/path" component={Path} />
+            <Route exact path="/path" component={Game} />
             <Route path="**" component={test} />
           </Switch>
         </ConnectedRouter>

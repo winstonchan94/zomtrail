@@ -35,33 +35,66 @@
 .story-content {
   margin: 15px 10px;
 }
-.action-buttons {
+.summit-action-buttons {
   display: flex;
   width: 100%;
   justify-content: flex-end;
 }
-.button {
+.summit-button {
   margin: 0px 10px;
 }
 
-/* path */
+/* Game */
+.gameplay-screen {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 300px;
+  background: #C7EAE4;
+  border-bottom: 1px solid white;
+}
+
+.action-buttons {
+  position: absolute;
+  bottom: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 3px;
+}
+.action-buttons button {
+  width: 100px;
+}
+.action-button {
+  background-color: #43E87A;
+  color: white;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+}
+
 .directions {
   width: 100%;
+  /* background: #80A1D4; */
 }
 .dir-textfield {
-  width: 100%;
+  width: calc(100% - 20px);
+  margin: 0px 10px;
   /* padding: 0px 0px; */
 }
 .dir-textarea {
+}
+.dir-label {
+  /* color: white; */
+}
+.dir-textfield.is-focused {
 
 }
 
-@media screen and (max-width: 479px) {
+/* @media screen and (max-width: 479px) {
   /* start of phone styles */
-  /* .App {
-    width:
-  } */
-}
+} */
 
 /*
 @keyframes App-logo-spin {
