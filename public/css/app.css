@@ -53,7 +53,14 @@
   /* padding: 0px 0px; */
 }
 .dir-textarea {
-  
+
+}
+
+@media screen and (max-width: 479px) {
+  /* start of phone styles */
+  /* .App {
+    width:
+  } */
 }
 
 /*
