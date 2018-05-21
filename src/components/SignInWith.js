@@ -83,20 +83,18 @@ class SignInWith extends Component {
             onClick={this.logout}
             >Logout</button>
         </div>
-
-        <p>After Signed in the user info will be logged on chrome console</p>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
-    return {
-        modalMode: state.common.modalMode
-    };
-};
-export default connect(mapStateToProps, {
-    toggleClose,
-    toggleOpen,
-    SignInUser
-})(SignInWith);
+// const mapStateToProps = state => {
+//
+// };
+// export default connect(mapStateToProps, {
+//     toggleClose,
+//     toggleOpen,
+//     SignInUser
+// })(SignInWith);
+
+export default SignInWith;

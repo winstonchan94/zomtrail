@@ -1,25 +1,7 @@
 .App {
-  /* text-align: center; */
-}
-
-.App-logo {
-  /* animation: App-logo-spin infinite 20s linear;
-  height: 80px; */
-}
-
-.App-header {
-  /* background-color: #222; */
-  /* height: 150px; */
-  /* padding: 20px; */
-  /* color: white; */
-}
-
-.App-title {
-  font-size: 30px;
-}
-
-.App-intro {
-  font-size: large;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .google-auth {
@@ -39,6 +21,39 @@
 .map {
   width: 100vw;
   height: 200px;
+}
+
+/* story */
+.story-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.story-title {
+  margin: 15px 0px;
+}
+.story-content {
+  margin: 15px 10px;
+}
+.action-buttons {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+.button {
+  margin: 0px 10px;
+}
+
+/* path */
+.directions {
+  width: 100%;
+}
+.dir-textfield {
+  width: 100%;
+  /* padding: 0px 0px; */
+}
+.dir-textarea {
+  
 }
 
 /*

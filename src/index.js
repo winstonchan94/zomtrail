@@ -6,6 +6,8 @@ import { Provider } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
 import App from './App.js';
+import Story from './components/story';
+import Path from './components/path';
 import registerServiceWorker from './registerServiceWorker';
 import { store, history } from './redux/store';
 
@@ -21,6 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
         <ConnectedRouter history={history}>
           <Switch>
             <Route exact path="/" component={App} />
+            <Route exact path="/story" component={Story} />
+            <Route exact path="/path" component={Path} />
             <Route path="**" component={test} />
           </Switch>
         </ConnectedRouter>

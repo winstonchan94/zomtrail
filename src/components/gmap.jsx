@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
 
+function midPoint(pos1, pos2) {
+  return {
+    lat: (pos1.lat + pos2.lat) / 2.0,
+    lng: (pos1.lng + pos2.lng) / 2.0
+  };
+}
+
 class Gmap extends Component {
   componentDidMount() {
     let pos = {lat: 37.7807117, lng: -122.4114988};
-    let map = new window.google.maps.Map(document.getElementById('map'), {
+    let gmaps = window.google.maps;
+    let map = new gmaps.Map(document.getElementById('map'), {
       zoom: 15,
       center: pos,
       streetViewControl: false,
@@ -15,15 +23,34 @@ class Gmap extends Component {
         pos.lat = position.coords.latitude;
         pos.lng = position.coords.longitude;
 
-        let marker = new window.google.maps.Marker({
-          position: pos,
+        let pos1 = pos;
+        let pos2 = {lat: pos.lat, lng: pos.lng+0.01};
+        let pos3 = {lat: pos.lat, lng: pos.lng-0.01};
+        var bounds = new gmaps.LatLngBounds();
+
+        let markerA = new gmaps.Marker({
+          position: pos3,
+          label: 'A',
           map: map
         });
-        let marker2 = new window.google.maps.Marker({
-          position: {lat: pos.lat, lng: pos.lng -0.01},
+        let markerUser = new gmaps.Marker({
+          position: pos1,
+          icon: {
+            url: 'http://localhost:3000/walk.png',
+          },
           map: map
         });
-        map.panTo(pos);
+        let markerB = new gmaps.Marker({
+          position: pos2,
+          label: 'B',
+          map: map
+        });
+
+        bounds.extend(pos1);
+        bounds.extend(pos2);
+        bounds.extend(pos3);
+        // map.panTo(midPoint(pos1, pos2));
+        map.fitBounds(bounds);
       });
     } else {
       let text = document.getElementById('map-info');
@@ -35,11 +62,11 @@ class Gmap extends Component {
     return (
       <div>
         <div className='map' id="map"></div>
-        <p className='map-info'></p>
       </div>
     );
   }
 }
+// <p className='map-info'></p>
 
 export default Gmap;
 
