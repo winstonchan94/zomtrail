@@ -10,9 +10,9 @@ module.exports = (router) => {
     /**
      * add an user
      */
-    router
-      .route('/user')
-      .post(data, usercontroller.addUser);
+    // router
+    //   .route('/user')
+    //   .post(data, usercontroller.addUser);
     /**
      * get a particlular user
      */

@@ -1,5 +1,10 @@
+
+'use strict';
+//import dependency
 const mongoose = require('mongoose');
-let UserSchema = new mongoose.Schema(
+const Schema = mongoose.Schema;
+
+let UserSchema = new Schema(
   {
     name: String,
     email: String,

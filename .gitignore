@@ -26,3 +26,5 @@ config/db.js
 
 bundle.js
 bundle.js.map
+
+package-lock.json

@@ -1,7 +1,5 @@
+const User = require('../models/User');
 
-const User = require('./../models/User');
-
-
-module.exports = {
-
+exports.apiGET = (req, res) => {
+  User.find({});
 };

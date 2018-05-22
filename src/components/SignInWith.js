@@ -5,7 +5,7 @@ import {
     SignInUser,
     toggleClose,
     toggleOpen
- } from './../redux/actions/actions';
+} from './../redux/actions/actions';
 
 class SignInWith extends Component {
   constructor(props) {
@@ -24,11 +24,6 @@ class SignInWith extends Component {
 
     document.getElementById('signin-button').style.display = 'block';
     document.getElementById('logout-div').style.display = 'none';
-    // const { logged, currentProvider } = this.state;
-    //
-    // if (logged && currentProvider) {
-    //   this.nodes[currentProvider].props.triggerLogout();
-    // }
   }
 
   renderButton() {
@@ -43,22 +38,25 @@ class SignInWith extends Component {
     });
   }
 
-  responseGoogle(res) {
+  responseGoogle(googleUser) {
     let postData = {
-      name: res.w3.ig,
+      name: googleUser.w3.ig,
       provider: 'google',
-      email: res.w3.U3,
-      provider_id: res.El,
-      token: res.Zi.access_token,
-      provider_pic: res.w3.Paa
+      email: googleUser.w3.U3,
+      provider_id: googleUser.El,
+      token: googleUser.Zi.access_token,
+      provider_pic: googleUser.w3.Paa
     };
     console.log(postData);
-    console.log('Logged in as: ' + res.getBasicProfile().getName());
+    console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+
+    const idToken = googleUser.getAuthResponse().id_token;
+    console.log("ID Token: " + idToken);
 
     document.getElementById('signin-button').style.display = 'none';
     document.getElementById('logout-div').style.display = 'block';
     document.getElementById('greeting').innerHTML = `Hello, ${postData.name}`;
-    // window.currentUser = res;
+    // window.currentUser = googleUser;
     // build our user data
     // this.props.SignInUser(postData);
     // this.props.toggleClose();
