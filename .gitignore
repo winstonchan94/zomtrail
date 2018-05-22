@@ -23,3 +23,6 @@ yarn-error.log*
 .tags
 
 config/db.js
+
+bundle.js
+bundle.js.map

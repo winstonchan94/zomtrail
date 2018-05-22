@@ -52,13 +52,9 @@ app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname + '/public/index.html'));
 });
 
-
-
 MongoClient.connect(db, (err, database) => {
- if (err) return console.log(err);
- require('./server/routes')(app, database);
- app.listen(port, () => {
-   console.log('We are live on ' + port);
- });
-
+  if (err) return console.log(err);
+  require('./server/routes')(app, database);
 });
+
+module.exports = app;
