@@ -34,4 +34,9 @@ const PathSchema = new Schema(
   }
 );
 
-module.exports = mongoose.model('Path', PathSchema);
+module.exports = {
+  Path: mongoose.model('Path', PathSchema),
+  Step: mongoose.model('Step', StepSchema),
+  PointO: mongoose.model('PointO', PointSchema),
+  Image: mongoose.model('Image', ImageSchema)
+};

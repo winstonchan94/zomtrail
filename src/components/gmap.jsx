@@ -1,12 +1,5 @@
 import React, { Component } from 'react';
 
-function midPoint(pos1, pos2) {
-  return {
-    lat: (pos1.lat + pos2.lat) / 2.0,
-    lng: (pos1.lng + pos2.lng) / 2.0
-  };
-}
-
 class Gmap extends Component {
   componentDidMount() {
     let pos = {lat: 37.7807117, lng: -122.4114988};
@@ -49,7 +42,6 @@ class Gmap extends Component {
         bounds.extend(pos1);
         bounds.extend(pos2);
         bounds.extend(pos3);
-        // map.panTo(midPoint(pos1, pos2));
         map.fitBounds(bounds);
       });
     } else {
