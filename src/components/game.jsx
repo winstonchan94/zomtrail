@@ -22,7 +22,7 @@ class Game extends Component {
           <div className="dir-textfield mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             <textarea
               className="dir-textarea mdl-textfield__input"
-              type="text" rows= "3" id="sample1" />
+              type="text" rows= "4" id="sample1" />
             <label
               className="dir-label mdl-textfield__label"
               htmlFor="sample1">Directions

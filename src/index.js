@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <Switch>
             <Route exact path="/" component={App} />
             <Route exact path="/story" component={Story} />
-            <Route exact path="/path" component={Game} />
+            <Route exact path="/game" component={Game} />
             <Route path="**" component={test} />
           </Switch>
         </ConnectedRouter>
