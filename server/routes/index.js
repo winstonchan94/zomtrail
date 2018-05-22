@@ -1,6 +1,4 @@
-const user = require('./user');
-const article = require('./article');
-module.exports = (router) => {
-    // user(router);
-    article(router);
+const pathRoutes = require('./paths');
+module.exports = (app, db) => {
+  pathRoutes(app, db);
 };

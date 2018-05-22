@@ -2,26 +2,21 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
+const MongoClient    = require('mongodb').MongoClient;
 const mongoose = require('mongoose');
 const routes = require('./server/routes/');
 const cors = require('cors');
 const router = express.Router();
+const axios = require('axios');
+const port = process.env.PORT || 3000;
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // MongoDB
-const url = process.env.MONGODB_URI ||
-  "mongodb://localhost:27017/medium";
-
+const db = process.env.MONGODB_URI || require('./config/db');
 /** connect to MongoDB datastore */
-try {
-  mongoose.connect(url, {
-    //useMongoClient: true
-  });
-} catch (error) {
-  console.log(error);
-}
 
 /**
  * API
@@ -51,9 +46,19 @@ app.use('/', express.static('public'));
 /** set up middlewares */
 app.use(cors());
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 // Default every route except the above to serve the index.html
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname + '/public/index.html'));
 });
 
-module.exports = app;
+
+
+MongoClient.connect(db, (err, database) => {
+ if (err) return console.log(err);
+ require('./server/routes')(app, database);
+ app.listen(port, () => {
+   console.log('We are live on ' + port);
+ });
+
+});
