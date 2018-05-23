@@ -10,20 +10,25 @@ const bodyParser = require('body-parser');
 // };
 exports.apiPost = (req, res) => {
   let path = new Path();
-  let point1 = new PointO();
-  let point2 = new PointO();
-  let step1 = new Step();
+  // let point1 = new PointO();
+  // let point2 = new PointO();
+  // let step1 = new Step();
 
-  point1.discription = ['Balboa High School'];
-  point2.description = ['South San Francisco Opera House'];
+  Object.assign(path, req.body.path);
+  let steps = path.steps;
+  // console.log(steps);
+  // console.log(path);
 
-  path.start_point = point1;
-  path.end_point = point2;
-
-  step1.start_point = point1;
-  step1.end_point = point2;
-
-  path.steps.push(step1);
+  // point1.discription = ['Balboa High School'];
+  // point2.description = ['South San Francisco Opera House'];
+  //
+  // path.start_point = point1;
+  // path.end_point = point2;
+  //
+  // step1.start_point = point1;
+  // step1.end_point = point2;
+  //
+  // path.steps.push(step1);
 
   path.save(function(err) {
     if (err) {

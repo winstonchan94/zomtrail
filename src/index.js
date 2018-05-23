@@ -12,7 +12,7 @@ import Locations from './components/locations';
 import registerServiceWorker from './registerServiceWorker';
 import { store, history } from './redux/store';
 
-function test() {
+function notValidPath() {
   return (
     <p>Not valid path</p>
   );
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <Route exact path="/story" component={Story} />
           <Route exact path="/game" component={Game} />
           <Route exact path="/location" component={Locations} />
-          <Route path="**" component={test} />
+          <Route path="**" component={notValidPath} />
         </Switch>
       </ConnectedRouter>
     </Provider>

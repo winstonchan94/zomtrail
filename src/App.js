@@ -16,7 +16,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1 className="App-title">Welcome to Zomtrail</h1>
-        <p>TOS</p>
+        <p>Terms of Service</p>
         <SignInWith />
       </div>
     );

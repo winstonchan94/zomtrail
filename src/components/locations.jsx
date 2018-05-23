@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import data from '../../locationData';
+import locationData from '../../locationData';
 
 class Locations extends Component {
   componentDidMount() {
@@ -13,7 +13,7 @@ class Locations extends Component {
 
     const bounds = new gmaps.LatLngBounds();
 
-    data.forEach((point) => {
+    locationData.forEach((point, idx) => {
       let pos = {lat: point.latitude, lng: point.longitude};
       let marker = new gmaps.Marker({
         position: pos,
@@ -21,6 +21,7 @@ class Locations extends Component {
       });
       bounds.extend(pos);
       const contentString =
+        `<p>${idx}</p>` +
         `<p>${point.discription}</p>` +
         `<p>${point.address}</p>`;
       const infowindow = new gmaps.InfoWindow({
