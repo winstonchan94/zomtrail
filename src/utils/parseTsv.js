@@ -2,7 +2,7 @@
 const Coordinates = require('coordinate-parser');
 const d3 = require('d3-dsv');
 const fs = require('fs');
-fs.readFile('locations.tsv', 'utf8', (err, string) => {
+fs.readFile('public-art-locations.tsv', 'utf8', (err, string) => {
   let data = d3.tsvParseRows(string);
 
   let newData = data.map((row) => {

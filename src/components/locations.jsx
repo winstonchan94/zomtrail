@@ -15,11 +15,21 @@ class Locations extends Component {
 
     data.forEach((point) => {
       let pos = {lat: point.latitude, lng: point.longitude};
-      new gmaps.Marker({
+      let marker = new gmaps.Marker({
         position: pos,
         map: map
       });
       bounds.extend(pos);
+      const contentString =
+        `<p>${point.discription}</p>` +
+        `<p>${point.address}</p>`;
+      const infowindow = new gmaps.InfoWindow({
+          content: contentString
+        });
+      marker.addListener('click', function() {
+        map.panTo(pos);
+        infowindow.open(map, marker);
+      });
     });
 
     map.fitBounds(bounds);
