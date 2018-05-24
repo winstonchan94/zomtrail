@@ -1,12 +1,12 @@
 # How to run this app
-### if you don't have mongod
+<!-- ### if you don't have mongod
 ```
   brew install mongodb
 ```
 And then run `mongod` locally
 ```
 mongod
-```
+``` -->
 
 ### Webpack
 ```
