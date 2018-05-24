@@ -15,6 +15,11 @@
 }
 .logout-div {
   display: none;
+  flex-direction: column;
+}
+.enter-game-button {
+  width: 180px;
+  height: 36px;
 }
 
 /* map */
@@ -94,7 +99,6 @@
 
 /* @media screen and (max-width: 479px) {
   /* start of phone styles */
-} */
 
 /*
 @keyframes App-logo-spin {

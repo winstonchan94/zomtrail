@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from "react-router-dom";
 const axios = require('axios');
 import {
     SignInUser,
@@ -13,6 +14,7 @@ class SignInWith extends Component {
 
     this.renderButton = this.renderButton.bind(this);
     this.logout = this.logout.bind(this);
+    this.responseGoogle = this.responseGoogle.bind(this);
   }
 
 
@@ -54,8 +56,12 @@ class SignInWith extends Component {
     console.log("ID Token: " + idToken);
 
     document.getElementById('signin-button').style.display = 'none';
-    document.getElementById('logout-div').style.display = 'block';
+    document.getElementById('logout-div').style.display = 'flex';
     document.getElementById('greeting').innerHTML = `Hello, ${postData.name}`;
+
+    // redirect
+    // this.props.history.push("/game");
+
     // window.currentUser = googleUser;
     // build our user data
     // this.props.SignInUser(postData);
@@ -81,6 +87,10 @@ class SignInWith extends Component {
             id='logout-button'
             onClick={this.logout}
             >Logout</button>
+          <button
+            className='enter-game-button'
+            onClick={() => this.props.history.push('/game')}
+            >Enter Game</button>
         </div>
       </div>
     );
@@ -96,4 +106,4 @@ class SignInWith extends Component {
 //     SignInUser
 // })(SignInWith);
 
-export default SignInWith;
+export default withRouter(SignInWith);

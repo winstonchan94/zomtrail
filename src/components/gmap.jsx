@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import locationData from '../../locationData';
 
 class Gmap extends Component {
   componentDidMount() {
     let pos = {lat: 37.7807117, lng: -122.4114988};
     let gmaps = window.google.maps;
     let map = new gmaps.Map(document.getElementById('map'), {
-      zoom: 15,
+      zoom: 10,
       center: pos,
       streetViewControl: false,
       mapTypeControl: false,
@@ -16,32 +17,51 @@ class Gmap extends Component {
         pos.lat = position.coords.latitude;
         pos.lng = position.coords.longitude;
 
-        let pos1 = pos;
-        let pos2 = {lat: pos.lat, lng: pos.lng+0.01};
-        let pos3 = {lat: pos.lat, lng: pos.lng-0.01};
+        let posB = {
+          lat: locationData[30].latitude,
+          lng: locationData[30].longitude
+        };
+        let posA = {
+          lat: locationData[31].latitude,
+          lng: locationData[31].longitude
+        };
+        let posC = {
+          lat: locationData[26].latitude,
+          lng: locationData[26].longitude,
+        };
+        // let posCurrent = {
+        //   lat: (posB.lat + posA.lat) / 2,
+        //   lng: (posB.lng + posA.lng) / 2
+        // };
         var bounds = new gmaps.LatLngBounds();
 
+        // let markerUser = new gmaps.Marker({
+        //   position: posCurrent,
+        //   icon: {
+        //     url: '/walk.png',
+        //   },
+        //   map: map
+        // });
         let markerA = new gmaps.Marker({
-          position: pos3,
+          position: posA,
           label: 'A',
           map: map
         });
-        let markerUser = new gmaps.Marker({
-          position: pos1,
-          icon: {
-            url: '/walk.png',
-          },
-          map: map
-        });
         let markerB = new gmaps.Marker({
-          position: pos2,
+          position: posB,
           label: 'B',
           map: map
         });
+        let markerC = new gmaps.Marker({
+          position: posC,
+          label: 'C',
+          map: map
+        });
 
-        bounds.extend(pos1);
-        bounds.extend(pos2);
-        bounds.extend(pos3);
+        // bounds.extend(posCurrent);
+        bounds.extend(posA);
+        bounds.extend(posB);
+        bounds.extend(posC);
         map.fitBounds(bounds);
       });
     } else {

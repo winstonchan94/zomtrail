@@ -12,6 +12,12 @@ exports.apiPost = (req, res) => {
   let path = new Path();
 
   Object.assign(path, req.body.path);
+<<<<<<< HEAD
+=======
+  let steps = path.steps;
+  // console.log(steps);
+  // console.log(path);
+>>>>>>> 7cbf56225dfa71d0f9224b156c34de4f2e9a34a1
 
   path.save(function(err) {
     if (err) {
@@ -42,6 +48,20 @@ exports.apiDelete = function(req, res) {
       res.send(err);
     } else {
       res.json({ message: 'Path has been deleted' });
+    }
+  });
+};
+
+exports.apiDeleteAll = function(req, res) {
+  Path.find({}, function(err, paths) {
+    if (err) {
+      console.log(err);
+      res.send(err);
+    } else {
+      paths.forEach((path) => {
+        Path.findByIdAndRemove(path._id, function() {});
+      });
+      res.json({ message: 'All paths has been deleted' });
     }
   });
 };
