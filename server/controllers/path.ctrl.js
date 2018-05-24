@@ -48,3 +48,17 @@ exports.apiDelete = function(req, res) {
     }
   });
 };
+
+exports.apiDeleteAll = function(req, res) {
+  Path.find({}, function(err, paths) {
+    if (err) {
+      console.log(err);
+      res.send(err);
+    } else {
+      paths.forEach((path) => {
+        Path.findByIdAndRemove(path._id, function() {});
+      });
+      res.json({ message: 'All paths has been deleted' });
+    }
+  });
+};
