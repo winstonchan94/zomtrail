@@ -10,7 +10,7 @@ class Story extends Component {
   }
 
   handleContiune() {
-    this.props.history.push("/game");
+    this.props.history.push("/waypoints");
   }
 
   logout () {
@@ -19,9 +19,8 @@ class Story extends Component {
         let auth2 = window.gapi.auth2.getAuthInstance();
         auth2.signOut().then(() => {
           console.log('Successfully sign out');
+          this.props.history.push("/");
         });
-
-        this.props.history.push("/");
       });
     });
   }
