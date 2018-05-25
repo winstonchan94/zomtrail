@@ -6,10 +6,24 @@ class Story extends Component {
     super(props);
 
     this.handleContiune = this.handleContiune.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   handleContiune() {
     this.props.history.push("/game");
+  }
+
+  logout () {
+    window.gapi.load('auth2', () => {
+      window.gapi.auth2.init().then(() => {
+        let auth2 = window.gapi.auth2.getAuthInstance();
+        auth2.signOut().then(() => {
+          console.log('Successfully sign out');
+        });
+
+        this.props.history.push("/");
+      });
+    });
   }
 
   render() {
@@ -20,6 +34,11 @@ class Story extends Component {
         Remember to stay aware of your surroundings during gameplay!
         </p>
         <div className='continue-buttons'>
+          <button
+            onClick={this.logout}
+            className="continue mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+            Logout
+          </button>
           <button
             onClick={this.handleContiune}
             className="continue mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">

@@ -55,7 +55,6 @@
   width: 100vw;
   height: 100vh;
 }
-
 /* story */
 .story-div {
   display: flex;
@@ -78,6 +77,10 @@
 }
 
 /* Game */
+.game-map {
+  width: 100vw;
+  height: 200px;
+}
 .gameplay-screen {
   position: relative;
   display: flex;

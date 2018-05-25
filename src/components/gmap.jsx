@@ -6,11 +6,12 @@ class Gmap extends Component {
   componentDidMount() {
     let pos = {lat: 37.7807117, lng: -122.4114988};
     let gmaps = window.google.maps;
-    let map = new gmaps.Map(document.getElementById('map'), {
+    let map = new gmaps.Map(document.getElementById('game-map'), {
       zoom: 10,
       center: pos,
       streetViewControl: false,
       mapTypeControl: false,
+      fullscreenControl: false,
     });
 
     if (navigator.geolocation) {
@@ -77,7 +78,7 @@ class Gmap extends Component {
   render() {
     return (
       <div>
-        <div className='map' id="map"></div>
+        <div className='game-map' id="game-map"></div>
       </div>
     );
   }

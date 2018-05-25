@@ -68,7 +68,7 @@ class ChooseWaypoint extends Component {
         });
 
       marker.addListener('click', () => {
-        map.panTo(pos);
+        // map.panTo(pos);
         let confirmed = confirm(`Do you want to go to ${point.discription} next?`);
         if (confirmed) {
           //

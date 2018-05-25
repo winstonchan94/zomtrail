@@ -36,36 +36,6 @@ class Locations extends Component {
     map.fitBounds(bounds);
   }
 
-
-
-    // let pos1 = pos;
-    // let pos2 = {lat: pos.lat, lng: pos.lng+0.01};
-    // let pos3 = {lat: pos.lat, lng: pos.lng-0.01};
-    // var bounds = new gmaps.LatLngBounds();
-    //
-    // let markerA = new gmaps.Marker({
-    //   position: pos3,
-    //   label: 'A',
-    //   map: map
-    // });
-    // let markerUser = new gmaps.Marker({
-    //   position: pos1,
-    //   icon: {
-    //     url: '/walk.png',
-    //   },
-    //   map: map
-    // });
-    // let markerB = new gmaps.Marker({
-    //   position: pos2,
-    //   label: 'B',
-    //   map: map
-    // });
-    //
-    // bounds.extend(pos1);
-    // bounds.extend(pos2);
-    // bounds.extend(pos3);
-    // map.panTo(midPoint(pos1, pos2));
-
   render() {
     return (
       <div>
