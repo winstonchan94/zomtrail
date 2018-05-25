@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import locationData from '../../locationData';
+import * as _ from 'geolocation-marker';
 
 class Gmap extends Component {
   componentDidMount() {
@@ -16,6 +17,8 @@ class Gmap extends Component {
       navigator.geolocation.getCurrentPosition((position) => {
         pos.lat = position.coords.latitude;
         pos.lng = position.coords.longitude;
+
+        let GeoMarker = new window.GeolocationMarker(map);
 
         let posB = {
           lat: locationData[30].latitude,
@@ -62,6 +65,7 @@ class Gmap extends Component {
         bounds.extend(posA);
         bounds.extend(posB);
         bounds.extend(posC);
+        // bounds.extend(pos);
         map.fitBounds(bounds);
       });
     } else {
