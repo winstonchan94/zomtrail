@@ -85,6 +85,3 @@ class Gmap extends Component {
 // <p className='map-info'></p>
 
 export default Gmap;
-
-// <iframe className='gmap' width="400" height="200" frameBorder="0" style={{border:0}}
-//   src="https://www.google.com/maps/embed/v1/view?zoom=11&center=37.7749%2C-122.4194&key=AIzaSyA7hmahITQBcIC2CHBzCbZPkaNRM1feCpI" allowFullScreen></iframe>

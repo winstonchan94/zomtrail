@@ -55,12 +55,12 @@ class SignInWith extends Component {
     const idToken = googleUser.getAuthResponse().id_token;
     console.log("ID Token: " + idToken);
 
-    document.getElementById('signin-button').style.display = 'none';
-    document.getElementById('logout-div').style.display = 'flex';
-    document.getElementById('greeting').innerHTML = `Hello, ${postData.name}`;
+    // document.getElementById('signin-button').style.display = 'none';
+    // document.getElementById('logout-div').style.display = 'flex';
+    // document.getElementById('greeting').innerHTML = `Hello, ${postData.name}`;
 
     // redirect
-    // this.props.history.push("/game");
+    this.props.history.push("/story");
 
     // window.currentUser = googleUser;
     // build our user data
@@ -70,6 +70,9 @@ class SignInWith extends Component {
 
   componentDidMount() {
     this.renderButton();
+
+    document.getElementById('signin-button')
+      .style.display = 'none';
   }
 
   render() {
@@ -79,23 +82,23 @@ class SignInWith extends Component {
           className='signin-button'
           id="signin-button">
         </div>
-        <div
-          className='logout-div' id='logout-div'>
-          <p id='greeting'></p>
-          <button
-            className='logout-button'
-            id='logout-button'
-            onClick={this.logout}
-            >Logout</button>
-          <button
-            className='enter-game-button'
-            onClick={() => this.props.history.push('/game')}
-            >Enter Game</button>
-        </div>
       </div>
     );
   }
 }
+// <div
+//   className='logout-div' id='logout-div'>
+//   <p id='greeting'></p>
+//   <button
+//     className='logout-button'
+//     id='logout-button'
+//     onClick={this.logout}
+//     >Logout</button>
+//   <button
+//     className='enter-game-button'
+//     onClick={() => this.props.history.push('/game')}
+//     >Enter Game</button>
+// </div>
 
 // const mapStateToProps = state => {
 //
