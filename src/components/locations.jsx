@@ -69,7 +69,7 @@ class Locations extends Component {
   render() {
     return (
       <div>
-        <div className='map' style={{height: '600px'}} id="map-locations">Locations</div>
+        <div className='map' id="map-locations">Locations</div>
       </div>
     );
   }
