@@ -12,12 +12,11 @@ exports.apiPost = (req, res) => {
   let path = new Path();
 
   Object.assign(path, req.body.path);
-<<<<<<< HEAD
-=======
+
   let steps = path.steps;
   // console.log(steps);
   // console.log(path);
->>>>>>> 7cbf56225dfa71d0f9224b156c34de4f2e9a34a1
+
 
   path.save(function(err) {
     if (err) {

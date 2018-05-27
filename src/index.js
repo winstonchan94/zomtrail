@@ -9,6 +9,7 @@ import App from './App.js';
 import Story from './components/story';
 import Game from './components/game';
 import Locations from './components/locations';
+import PicturePage from './components/picture';
 import registerServiceWorker from './registerServiceWorker';
 import { store, history } from './redux/store';
 
@@ -27,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <Route exact path="/story" component={Story} />
           <Route exact path="/game" component={Game} />
           <Route exact path="/location" component={Locations} />
+          <Route exact path="/picture" component={PicturePage} />
           <Route path="**" component={notValidPath} />
         </Switch>
       </ConnectedRouter>

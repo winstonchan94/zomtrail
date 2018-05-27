@@ -24,7 +24,7 @@ router.route('/paths/:path_id')
 //     });
 //   });
 //   app.get('/paths', (req, res) => {
-//     db.collection("/paths").find({}).toArray(function(err, result) {
+//     db.collection("paths").find({}).toArray(function(err, result) {
 //       if (err) throw err;
 //       res.send(result);
 //     });
