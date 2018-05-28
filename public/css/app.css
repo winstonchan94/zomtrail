@@ -30,11 +30,11 @@
   align-items: center;
   min-height: 100vh;
   width: 100%;
-  background: white url('../pic/Bkg-City-at-Night.png') center center no-repeat;
+  /* background: white url('../pic/Bkg-City-at-Night.png') center center no-repeat; */
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  color: white;
+  /* color: white; */
 }
 .login-title {
   font-size: 30px;
@@ -50,12 +50,12 @@
   margin: 10px 0px;
 }
 .tos-label {
-  color: white;
+  /* color: white; */
 }
 .tos-checkbox {
 }
 .mdl-checkbox__box-outline {
-  border-color: white;
+  /* border-color: white; */
 }
 
 /* choose-waypoints */
