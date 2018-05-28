@@ -25,8 +25,7 @@ const StepSchema = new Schema({
   }]
 });
 
-const PathSchema = new Schema(
-  {
+const PathSchema = new Schema({
     start_point: PointSchema,
     end_point: PointSchema,
     steps: [StepSchema],
