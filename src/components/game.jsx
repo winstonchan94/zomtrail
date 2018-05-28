@@ -4,13 +4,16 @@ import { withRouter } from "react-router-dom";
 import locationData from '../../locationData';
 import axios from 'axios';
 
-const recognition = new window.webkitSpeechRecognition();
+var recognition;
+if (window.hasOwnProperty('webkitSpeechRecognition')) {
+  recognition = new window.webkitSpeechRecognition();
+}
 var recognizing = false;
 
 class Game extends Component {
   constructor(props) {
     super(props);
-    
+
     let pointA = {
       latitude: locationData[30].latitude,
       longitude: locationData[30].longitude,
@@ -123,6 +126,18 @@ class Game extends Component {
     }
   }
 
+  renderSpeechToTextButton() {
+    if (window.hasOwnProperty('webkitSpeechRecognition')) {
+      return (
+        <div>
+          <img onClick={this.startDictation} src="//i.imgur.com/cHidSVu.gif" />
+        </div>
+      );
+    } else {
+      return ( <div></div> );
+    }
+  }
+
   render() {
     return (
       <div className='game-div'>
@@ -155,9 +170,7 @@ class Game extends Component {
             </label>
           </div>
         </form>
-        <div>
-          <img onClick={this.startDictation} src="//i.imgur.com/cHidSVu.gif" />
-        </div>
+        {this.renderSpeechToTextButton()}
       </div>
     );
   }
