@@ -1,21 +1,25 @@
 import React, { Component } from 'react';
 import locationData from '../../locationData';
+import * as _ from 'geolocation-marker';
 
 class Gmap extends Component {
   componentDidMount() {
     let pos = {lat: 37.7807117, lng: -122.4114988};
     let gmaps = window.google.maps;
-    let map = new gmaps.Map(document.getElementById('map'), {
+    let map = new gmaps.Map(document.getElementById('game-map'), {
       zoom: 10,
       center: pos,
       streetViewControl: false,
       mapTypeControl: false,
+      fullscreenControl: false,
     });
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         pos.lat = position.coords.latitude;
         pos.lng = position.coords.longitude;
+
+        let GeoMarker = new window.GeolocationMarker(map);
 
         let posB = {
           lat: locationData[30].latitude,
@@ -25,10 +29,10 @@ class Gmap extends Component {
           lat: locationData[31].latitude,
           lng: locationData[31].longitude
         };
-        let posC = {
-          lat: locationData[26].latitude,
-          lng: locationData[26].longitude,
-        };
+        // let posC = {
+        //   lat: locationData[26].latitude,
+        //   lng: locationData[26].longitude,
+        // };
         // let posCurrent = {
         //   lat: (posB.lat + posA.lat) / 2,
         //   lng: (posB.lng + posA.lng) / 2
@@ -52,16 +56,16 @@ class Gmap extends Component {
           label: 'B',
           map: map
         });
-        let markerC = new gmaps.Marker({
-          position: posC,
-          label: 'C',
-          map: map
-        });
-
+        // let markerC = new gmaps.Marker({
+        //   position: posC,
+        //   label: 'C',
+        //   map: map
+        // });
         // bounds.extend(posCurrent);
         bounds.extend(posA);
         bounds.extend(posB);
-        bounds.extend(posC);
+        // bounds.extend(posC);
+        // bounds.extend(pos);
         map.fitBounds(bounds);
       });
     } else {
@@ -72,15 +76,10 @@ class Gmap extends Component {
 
   render() {
     return (
-      <div>
-        <div className='map' id="map"></div>
-      </div>
+      <div className='game-map' id="game-map"></div>
     );
   }
 }
 // <p className='map-info'></p>
 
 export default Gmap;
-
-// <iframe className='gmap' width="400" height="200" frameBorder="0" style={{border:0}}
-//   src="https://www.google.com/maps/embed/v1/view?zoom=11&center=37.7749%2C-122.4194&key=AIzaSyA7hmahITQBcIC2CHBzCbZPkaNRM1feCpI" allowFullScreen></iframe>
