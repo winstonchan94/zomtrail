@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
+import Button from '@material-ui/core/Button';
 
 class Story extends Component {
   constructor(props) {
@@ -28,7 +29,7 @@ class Story extends Component {
   render() {
     return (
       <div className='story-div'>
-        <h2 className='story-title'>Zomtrail Story</h2>
+        <h2 className='story-title'>Zomtrail Storyline</h2>
         <p className='story-content'>Thank you for playing! Please be aware that this game will require internet connection and use of your location.
         Remember to stay aware of your surroundings during gameplay!
         </p>

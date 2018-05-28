@@ -29,10 +29,10 @@ class Gmap extends Component {
           lat: locationData[31].latitude,
           lng: locationData[31].longitude
         };
-        let posC = {
-          lat: locationData[26].latitude,
-          lng: locationData[26].longitude,
-        };
+        // let posC = {
+        //   lat: locationData[26].latitude,
+        //   lng: locationData[26].longitude,
+        // };
         // let posCurrent = {
         //   lat: (posB.lat + posA.lat) / 2,
         //   lng: (posB.lng + posA.lng) / 2
@@ -56,16 +56,15 @@ class Gmap extends Component {
           label: 'B',
           map: map
         });
-        let markerC = new gmaps.Marker({
-          position: posC,
-          label: 'C',
-          map: map
-        });
-
+        // let markerC = new gmaps.Marker({
+        //   position: posC,
+        //   label: 'C',
+        //   map: map
+        // });
         // bounds.extend(posCurrent);
         bounds.extend(posA);
         bounds.extend(posB);
-        bounds.extend(posC);
+        // bounds.extend(posC);
         // bounds.extend(pos);
         map.fitBounds(bounds);
       });
@@ -77,9 +76,7 @@ class Gmap extends Component {
 
   render() {
     return (
-      <div>
-        <div className='game-map' id="game-map"></div>
-      </div>
+      <div className='game-map' id="game-map"></div>
     );
   }
 }

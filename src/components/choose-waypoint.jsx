@@ -81,9 +81,28 @@ class ChooseWaypoint extends Component {
     map.fitBounds(bounds);
   }
 
+  handleCloseModal() {
+    document.getElementById('modal')
+      .style.display = 'none';
+  }
+
   render() {
     return (
       <div className='choose-waypoint-div'>
+        <div id="modal" className="modal">
+          <div className="modal-content">
+            <span className="close"
+              onClick={this.handleCloseModal}>&times;</span>
+            <p>Please choose your next waypoint. Be aware that farther waypoints present more chances for events!</p>
+            <div className='continue-buttons'>
+              <button
+                onClick={this.handleCloseModal}
+                className="continue mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                OK
+              </button>
+            </div>
+          </div>
+        </div>
         <div
           className='waypoint-map'
           id="waypoint-map">Locations</div>
