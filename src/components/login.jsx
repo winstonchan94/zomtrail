@@ -109,8 +109,6 @@ class Login extends Component {
   }
 
   render() {
-    const { classes } = this.props;
-
     return (
       <div className='login-div'>
         {this.renderTos()}
