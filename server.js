@@ -39,6 +39,17 @@ app.use('/api', pathRouter);
 //     res.status(200).send(data);
 // });
 
+// force user to use https
+app.use (function (req, res, next) {
+  if (req.secure || req.headers.host === 'localhost:3000') {
+    // request was via https, so do no special handling
+    next();
+  } else {
+    // request was via http, so redirect to https
+    res.redirect('https://' + req.headers.host + req.url);
+  }
+});
+
 /**
  * STATIC FILES
  */
