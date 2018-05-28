@@ -25,6 +25,7 @@
 /* login */
 .login-div {
   display: flex;
+  position: relative;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -60,8 +61,8 @@
 }
 /* modal */
 .tos-modal {
-  /* display: none; Hidden by default */
-  position: fixed; /* Stay in place */
+  display: none; 
+  position: absolute; /* Stay in place */
   z-index: 2; /* Sit on top */
   left: 0;
   top: 0;
@@ -91,7 +92,6 @@
 }
 /* modal */
 .modal {
-  /* display: none; Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   left: 0;
