@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
-import Button from '@material-ui/core/Button';
 
 class Story extends Component {
   constructor(props) {

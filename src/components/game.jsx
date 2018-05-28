@@ -10,7 +10,7 @@ var recognizing = false;
 class Game extends Component {
   constructor(props) {
     super(props);
-
+    
     let pointA = {
       latitude: locationData[30].latitude,
       longitude: locationData[30].longitude,
@@ -103,10 +103,8 @@ class Game extends Component {
             }
           }
           dir.value = text;
-          console.log(e.results);
 
           document.getElementById('dir-textfield').classList.add('is-dirty');
-          // recognition.stop();
         };
       }
 
