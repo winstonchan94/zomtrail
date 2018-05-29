@@ -151,6 +151,9 @@ class Game extends Component {
             </div>
             <h1 className='gameplay-score'>Score: 9000</h1>
           </div>
+          <div className='gameplay-mid'>
+            <button className='event-button'>Event</button>
+          </div>
           <div className='gameplay-bottom'>
             <div className='resources'>
               <div className='resource'>
