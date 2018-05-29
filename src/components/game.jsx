@@ -143,15 +143,36 @@ class Game extends Component {
       <div className='game-div'>
         <Gmap />
         <div className='gameplay-screen'>
-          <h1>GamePlay</h1>
-          <h1>Screen</h1>
-          <div className='action-buttons'>
-            <button className="action-button mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent">
-              Scavenge
-            </button>
-            <button className="action-button mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent">
-              Rest
-            </button>
+          <div className='gameplay-top'>
+            <div
+              className='menu'
+              id='menu'>
+              <i className="fas fa-bars"></i>
+            </div>
+            <h1 className='gameplay-score'>Score: 9000</h1>
+          </div>
+          <div className='gameplay-bottom'>
+            <div className='resources'>
+              <div className='resource'>
+                <i className="fas fa-heart"></i>
+              </div>
+              <div className='resource'>
+                <i className="fas fa-clock"></i>
+              </div>
+            </div>
+            <div className='resources'>
+              <div className='resource'>
+                <i className="fas fa-heart"></i>
+              </div>
+              <div className='resource'>
+                <i className="fas fa-clock"></i>
+              </div>
+            </div>
+            <div className='action-buttons'>
+              <button className='action-button'>Action</button>
+              <button className='action-button'>Action</button>
+              <button className='action-button'>Action</button>
+            </div>
           </div>
         </div>
         <form
@@ -175,6 +196,14 @@ class Game extends Component {
     );
   }
 }
+  // <button className="action-button mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent">
+  //   Scavenge
+  // </button>
+  // <button className="action-button mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent">
+  //   Rest
+  // </button>
+
+
 // <div className='summit-action-buttons'>
 //   <button
 //     onClick={this.getPaths}
