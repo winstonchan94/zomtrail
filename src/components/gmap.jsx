@@ -20,6 +20,7 @@ class Gmap extends Component {
         pos.lng = position.coords.longitude;
 
         let GeoMarker = new window.GeolocationMarker(map);
+        GeoMarker.setCircleOptions({ visible: false });
 
         let posB = {
           lat: locationData[30].latitude,

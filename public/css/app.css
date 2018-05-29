@@ -40,6 +40,9 @@
 .login-title {
   font-size: 30px;
 }
+.logo{
+  width: 25%;
+}
 .tos-text {
   text-decoration: underline;
   margin: 0px 0px 25px 0px;
@@ -61,7 +64,7 @@
 }
 /* modal */
 .tos-modal {
-  display: none; 
+  display: none;
   position: absolute; /* Stay in place */
   z-index: 2; /* Sit on top */
   left: 0;
@@ -91,17 +94,6 @@
   height: 100vh;
 }
 /* modal */
-.modal {
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
 .modal-content {
   background-color: #fefefe;
   margin: 15% auto; /* 15% from the top and centered */
@@ -133,13 +125,14 @@
   display: flex;
   height: 100vh;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 }
 .story-title {
   margin: 15px 0px;
 }
 .story-content {
+  font-size: 20px;
   margin: 15px 10px;
 }
 .continue-buttons {
@@ -149,62 +142,6 @@
 }
 .continue {
   margin: 0px 10px;
-}
-
-/* Game */
-.game-div {
-  display: flex;
-  flex-direction: column;
-}
-.game-map {
-  width: 100vw;
-  height: 250px;
-}
-.gameplay-screen {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  min-height: 300px;
-  background: #C7EAE4;
-  border-bottom: 1px solid white;
-}
-
-.action-buttons {
-  position: absolute;
-  bottom: 0px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-  margin-bottom: 3px;
-}
-.action-buttons button {
-  width: 100px;
-}
-.action-button {
-  background-color: #43E87A;
-  color: white;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
-}
-
-.directions {
-  width: 100%;
-  /* background: #80A1D4; */
-}
-.dir-textfield {
-  width: calc(100% - 20px);
-  margin: 0px 10px;
-  /* padding: 0px 0px; */
-}
-.dir-textarea {
-}
-.dir-label {
-  /* color: white; */
-}
-.dir-textfield.is-focused {
-
 }
 
 /* @media screen and (max-width: 479px) {

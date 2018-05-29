@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Gmap from './gmap';
+import EventModal from './eventModal';
+import TakePhotoModal from './takePhotoModal';
 import { withRouter } from "react-router-dom";
 import locationData from '../../locationData';
 import axios from 'axios';
@@ -138,20 +140,83 @@ class Game extends Component {
     }
   }
 
+  handleOpenMenu() {
+    let dropdown = document.getElementById('drop-down-menu');
+    if (dropdown.style.display === "block") {
+      dropdown.style.display = "none";
+    } else {
+      dropdown.style.display = "block";
+    }
+  }
+
+  handleEvent() {
+    document.getElementById('event-modal')
+      .style.display = 'block';
+  }
+
+  handleTakePhoto() {
+    document.getElementById('photo-modal')
+      .style.display = 'block';
+  }
+
   render() {
     return (
       <div className='game-div'>
+        <EventModal />
+        <TakePhotoModal />
         <Gmap />
         <div className='gameplay-screen'>
-          <h1>GamePlay</h1>
-          <h1>Screen</h1>
-          <div className='action-buttons'>
-            <button className="action-button mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent">
-              Scavenge
-            </button>
-            <button className="action-button mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent">
-              Rest
-            </button>
+          <div className='gameplay-top'>
+            <div className='menu-div'>
+              <div
+                className='menu'
+                id='menu'>
+                <i className="fas fa-bars"
+                  onClick={this.handleOpenMenu}></i>
+              </div>
+              <div className='drop-down-menu'
+                id='drop-down-menu'>
+                <ul>
+                  <li className='option-li'>Scoreboard</li>
+                  <li className='option-li'>Start A new game</li>
+                  <li className='option-li'>Logout</li>
+                </ul>
+              </div>
+            </div>
+            <h1 className='gameplay-score'>Score: 9000</h1>
+          </div>
+          <div className='gameplay-mid'>
+            <button className='event-button'
+              onClick={this.handleEvent}>Event</button>
+            <button className='event-button'
+              onClick={this.handleTakePhoto}>Take Photo</button>
+          </div>
+          <div className='gameplay-bottom'>
+            <div className='resources'>
+              <div className='resource'>
+                <i className="fas fa-dollar-sign"></i>
+                <span className='resource-amount'>100</span>
+              </div>
+              <div className='resource'>
+                <i className="far fa-smile"></i>
+                <span className='resource-amount'>100</span>
+              </div>
+            </div>
+            <div className='resources'>
+              <div className='resource'>
+                <i className="far fa-heart"></i>
+                <span className='resource-amount'>100</span>
+              </div>
+              <div className='resource'>
+                <i className="fas fa-clock"></i>
+                <span className='resource-amount'>Day 1</span>
+              </div>
+            </div>
+            <div className='action-buttons'>
+              <button className='action-button'>Scavenge</button>
+              <button className='action-button'>Rest</button>
+              <button className='action-button'>Run</button>
+            </div>
           </div>
         </div>
         <form
@@ -166,8 +231,15 @@ class Game extends Component {
               type="text" rows= "4" id="direction" />
             <label
               className="dir-label mdl-textfield__label"
-              htmlFor="direction">A - B Directions
+              htmlFor="direction">Directions
             </label>
+          </div>
+          <div className='summit-action-buttons'>
+            <input
+              type='submit'
+              value='Submit'
+              className="summit-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+            </input>
           </div>
         </form>
         {this.renderSpeechToTextButton()}
@@ -175,6 +247,14 @@ class Game extends Component {
     );
   }
 }
+  // <button className="action-button mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent">
+  //   Scavenge
+  // </button>
+  // <button className="action-button mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent">
+  //   Rest
+  // </button>
+
+
 // <div className='summit-action-buttons'>
 //   <button
 //     onClick={this.getPaths}

@@ -86,6 +86,7 @@ class SignInWith extends Component {
     );
   }
 }
+
 // <div
 //   className='logout-div' id='logout-div'>
 //   <p id='greeting'></p>

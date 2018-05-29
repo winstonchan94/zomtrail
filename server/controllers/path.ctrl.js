@@ -4,17 +4,11 @@ const PointO = pathModel.PointO;
 const Step = pathModel.Step;
 const bodyParser = require('body-parser');
 
-// exports.apiGetPath = (req, res) => {
-//   const path_id = req.params.path_id;
-//
-// };
 exports.apiPost = (req, res) => {
   let path = new Path();
 
   Object.assign(path, req.body.path);
   let steps = path.steps;
-  // console.log(steps);
-  // console.log(path);
 
   path.save(function(err) {
     if (err) {

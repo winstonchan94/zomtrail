@@ -113,6 +113,10 @@ class Login extends Component {
       <div className='login-div'>
         {this.renderTos()}
         <h2 className='login-title'>Welcome to Zomtrail</h2>
+        <img
+          className='logo'
+          src="pic/Icons-Footsteps-vertical.png"
+          alt="Smiley face"></img>
         <div className='tos-text'>
           <a
             onClick={this.handleOpenModal}>Terms of Service

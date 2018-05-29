@@ -28,9 +28,8 @@ class Story extends Component {
   render() {
     return (
       <div className='story-div'>
-        <h2 className='story-title'>Zomtrail Storyline</h2>
-        <p className='story-content'>Thank you for playing! Please be aware that this game will require internet connection and use of your location.
-        Remember to stay aware of your surroundings during gameplay!
+        <p className='story-content'>It’s the end of the world!</p>
+        <p className='story-content'>Zombies, aliens, and doomsday salesman are all over the place looking for their next victims. Lead your group to safety and reach the final safe haven to escape with your lives!
         </p>
         <div className='continue-buttons'>
           <button
