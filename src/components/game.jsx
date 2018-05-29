@@ -138,16 +138,36 @@ class Game extends Component {
     }
   }
 
+  handleOpenMenu() {
+    let dropdown = document.getElementById('drop-down-menu');
+    if (dropdown.style.display === "block") {
+      dropdown.style.display = "none";
+    } else {
+      dropdown.style.display = "block";
+    }
+  }
+
   render() {
     return (
       <div className='game-div'>
         <Gmap />
         <div className='gameplay-screen'>
           <div className='gameplay-top'>
-            <div
-              className='menu'
-              id='menu'>
-              <i className="fas fa-bars"></i>
+            <div className='menu-div'>
+              <div
+                className='menu'
+                id='menu'>
+                <i className="fas fa-bars"
+                  onClick={this.handleOpenMenu}></i>
+              </div>
+              <div className='drop-down-menu'
+                id='drop-down-menu'>
+                <ul>
+                  <li className='option-li'>Scoreboard</li>
+                  <li className='option-li'>Start A new game</li>
+                  <li className='option-li'>Logout</li>
+                </ul>
+              </div>
             </div>
             <h1 className='gameplay-score'>Score: 9000</h1>
           </div>
@@ -157,24 +177,28 @@ class Game extends Component {
           <div className='gameplay-bottom'>
             <div className='resources'>
               <div className='resource'>
-                <i className="fas fa-heart"></i>
+                <i className="fas fa-dollar-sign"></i>
+                <span className='resource-amount'>100</span>
               </div>
               <div className='resource'>
-                <i className="fas fa-clock"></i>
+                <i className="far fa-smile"></i>
+                <span className='resource-amount'>100</span>
               </div>
             </div>
             <div className='resources'>
               <div className='resource'>
-                <i className="fas fa-heart"></i>
+                <i className="far fa-heart"></i>
+                <span className='resource-amount'>100</span>
               </div>
               <div className='resource'>
                 <i className="fas fa-clock"></i>
+                <span className='resource-amount'>Day 1</span>
               </div>
             </div>
             <div className='action-buttons'>
-              <button className='action-button'>Action</button>
-              <button className='action-button'>Action</button>
-              <button className='action-button'>Action</button>
+              <button className='action-button'>Scavenge</button>
+              <button className='action-button'>Rest</button>
+              <button className='action-button'>Run</button>
             </div>
           </div>
         </div>

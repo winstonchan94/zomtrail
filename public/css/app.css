@@ -183,14 +183,36 @@
   /* align-items: center; */
   justify-content: center;
 }
-.menu {
+.menu-div {
   position: absolute;
+  left: 0px;
+  z-index: 1;
+}
+.menu {
+  /* position: absolute; */
   background: white;
   padding: 5px 5px;
   margin: 5px 5px;
   border-radius: 3px;
   font-size: 25px;
+}
+.drop-down-menu {
+  display: none;
+  position: absolute;
+  background: white;
+  width: 130px;
   left: 0px;
+  margin: 5px 5px;
+  top: 38px;
+  border-radius: 3px;
+  box-shadow: 0 1px 4px 1px rgba(0,0,0,0.2);
+}
+.option-li {
+  padding: 5px;
+  border-bottom: 2px solid grey;
+}
+.option-li:last-child {
+  border-bottom: none;
 }
 .gameplay-score {
   font-size: 20px;
@@ -236,17 +258,27 @@
   display: flex;
   width: 100%;
   justify-content: space-between;
-  font-size: 35px;
+  font-size: 48px;
 }
 .resource {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50px;
-  width: 50px;
-  border-radius: 25px;
+  height: 70px;
+  width: 70px;
+  border-radius: 35px;
   margin: 5px 5px;
   background: white;
+}
+.resource-amount {
+  position: absolute;
+  background: red;
+  color: white;
+  padding: 1px 3px;
+  font-size: 14px;
+  bottom: 0px;
+  right: 0px;
 }
 
 .directions {
