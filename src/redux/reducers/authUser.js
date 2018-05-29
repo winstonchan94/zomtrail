@@ -8,7 +8,10 @@ export default (state = initialState, action) => {
     case 'SET_CURRENT_USER':
       return {
         //bottom would go here
-        profile: action.currentUser.email,
+        profile: {
+          email: action.currentUser.email,
+          name: action.currentUser.name
+        }
       };
     case 'FOLLOW_USER':
     let user = Object.assign({}, state.user);

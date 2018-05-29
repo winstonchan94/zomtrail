@@ -25,7 +25,13 @@ exports.apiPost = (req, res) => {
   });
 };
 exports.apiGetOne = function(req, res) {
-  
+  Path.findById(req.body.id).exec(function(err, path) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.json(path);
+    }
+  });
 };
 exports.apiGetAll = function(req, res) {
   Path.find().sort('updatedAt')

@@ -51,9 +51,17 @@ class SignInWith extends Component {
     };
     console.log(postData);
     console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-    this.props.setUser(postData);
+    // this.props.setUser(postData);
     const idToken = googleUser.getAuthResponse().id_token;
-    console.log("ID Token: " + idToken);
+    // console.log("ID Token: " + idToken);
+    let user;
+    let userId;
+    axios({
+      method: 'POST',
+      url: '/api/users',
+      data: {user: {name: postData.name, email: postData.email, score: 0}}
+    }).then(function(res){ console.log(res); });
+
 
     // document.getElementById('signin-button').style.display = 'none';
     // document.getElementById('logout-div').style.display = 'flex';

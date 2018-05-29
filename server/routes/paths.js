@@ -5,6 +5,7 @@ const ObjectID = require('mongodb').ObjectID;
 
 router.route('/paths')
   .get(paths.apiGetAll)
+  .get(paths.apiGetOne)
   .post(paths.apiPost)
   .delete(paths.apiDeleteAll);
 
