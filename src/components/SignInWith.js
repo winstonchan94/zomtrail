@@ -51,7 +51,7 @@ class SignInWith extends Component {
     };
     console.log(postData);
     console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-
+    this.props.setUser(postData);
     const idToken = googleUser.getAuthResponse().id_token;
     console.log("ID Token: " + idToken);
 

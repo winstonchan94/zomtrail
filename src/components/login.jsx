@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SignInWith from './SignInWith';
+import SignInWithContainer from './sign_in_with_container';
 
 class Login extends Component {
   constructor(props) {
@@ -42,7 +42,7 @@ class Login extends Component {
           </label>
         </div>
 
-        <SignInWith/>
+        <SignInWithContainer/>
       </div>
     );
   }

@@ -5,11 +5,10 @@ const initialState = {
 };
 export default (state = initialState, action) => {
   switch (action.type) {
-    case 'SET_USER':
+    case 'SET_CURRENT_USER':
       return {
-        profile: state.profile,
-        isAuth: Object.keys(action.user).length > 0 ? true : false,
-        user: action.user
+        //bottom would go here
+        profile: action.currentUser.email,
       };
     case 'FOLLOW_USER':
     let user = Object.assign({}, state.user);
@@ -27,5 +26,8 @@ export default (state = initialState, action) => {
       };
     default:
       return state;
-  } 
+  }
 };
+// profile: state.profile,
+// isAuth: Object.keys(action.user).length > 0 ? true : false,
+// user: action.user

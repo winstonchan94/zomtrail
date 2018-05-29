@@ -60,9 +60,10 @@ export const setCurrentUser = currentUser => ({
   type: SET_CURRENT_USER,
   currentUser
 });
-export function SignInUser (userData) {
 
-}
+export const signInUser = userData => dispatch => (
+  dispatch(setCurrentUser(userData))
+);
 // return (dispatch) => {
 //     axios.post(`${url}user`,user_data).then((res)=>{
 //         let user = res.data;
