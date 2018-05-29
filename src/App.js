@@ -7,6 +7,7 @@ import Game from './components/game';
 import Login from './components/login';
 import Locations from './components/locations';
 import ChooseWaypoint from './components/choose-waypoint';
+import Scoreboard from './components/scoreboard';
 
 function notValidPath() {
   return (
@@ -33,6 +34,7 @@ class App extends Component {
           <Route exact path="/game" component={Game} />
           <Route exact path="/location" component={Locations} />
           <Route exact path="/waypoints" component={ChooseWaypoint} />
+          <Route exact path="/scoreboard" component={Scoreboard} />
           <Route path="**" component={notValidPath} />
         </Switch>
       </div>

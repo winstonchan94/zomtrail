@@ -144,6 +144,43 @@
   margin: 0px 10px;
 }
 
+/* Scoreboard */
+.scoreboard-div {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  background: black;
+  color: #39D348;
+}
+.scoreboard-table {
+  font-size: 20px;
+  /* counter-reset: rowNumber; */
+}
+.scoreboard-table tr {
+  /* counter-increment: rowNumber; */
+}
+.scoreboard-table tr td:first-child::before {
+  /* content: counter(rowNumber); */
+}
+.scoreboard-table td {
+  /* text-align: center; */
+  padding: 10px 15px;
+}
+.back-buttons {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+.back-button {
+  width: 150px;
+  margin: 10px;
+}
+
 /* @media screen and (max-width: 479px) {
   /* start of phone styles */
 
