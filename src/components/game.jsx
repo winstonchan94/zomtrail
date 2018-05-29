@@ -154,6 +154,11 @@ class Game extends Component {
       .style.display = 'block';
   }
 
+  handleTakePhoto() {
+    document.getElementById('photo-modal')
+      .style.display = 'block';
+  }
+
   render() {
     return (
       <div className='game-div'>
@@ -183,6 +188,8 @@ class Game extends Component {
           <div className='gameplay-mid'>
             <button className='event-button'
               onClick={this.handleEvent}>Event</button>
+            <button className='event-button'
+              onClick={this.handleTakePhoto}>Take Photo</button>
           </div>
           <div className='gameplay-bottom'>
             <div className='resources'>
