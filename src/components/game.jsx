@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Gmap from './gmap';
 import EventModal from './eventModal';
 import TakePhotoModal from './takePhotoModal';
+import DropdownMenu from './dropdownMenu';
 import { withRouter } from "react-router-dom";
 import locationData from '../../locationData';
 import axios from 'axios';
@@ -140,15 +141,6 @@ class Game extends Component {
     }
   }
 
-  handleOpenMenu() {
-    let dropdown = document.getElementById('drop-down-menu');
-    if (dropdown.style.display === "block") {
-      dropdown.style.display = "none";
-    } else {
-      dropdown.style.display = "block";
-    }
-  }
-
   handleEvent() {
     document.getElementById('event-modal')
       .style.display = 'block';
@@ -167,22 +159,7 @@ class Game extends Component {
         <Gmap />
         <div className='gameplay-screen'>
           <div className='gameplay-top'>
-            <div className='menu-div'>
-              <div
-                className='menu'
-                id='menu'>
-                <i className="fas fa-bars"
-                  onClick={this.handleOpenMenu}></i>
-              </div>
-              <div className='drop-down-menu'
-                id='drop-down-menu'>
-                <ul>
-                  <li className='option-li'>Scoreboard</li>
-                  <li className='option-li'>Start A new game</li>
-                  <li className='option-li'>Logout</li>
-                </ul>
-              </div>
-            </div>
+            <DropdownMenu />
             <h1 className='gameplay-score'>Score: 9000</h1>
           </div>
           <div className='gameplay-mid'>
@@ -253,27 +230,5 @@ class Game extends Component {
   // <button className="action-button mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent">
   //   Rest
   // </button>
-
-
-// <div className='summit-action-buttons'>
-//   <button
-//     onClick={this.getPaths}
-//     className="summit-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-//     Get Paths
-//   </button>
-//     <button
-//       onClick={this.createPath}
-//       className="summit-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-//       Create Paths
-//     </button>
-// </div>
-// <div className='summit-action-buttons'>
-//   <input
-//     type='submit'
-//     value='Arival Check-in'
-//     className="summit-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-//   </input>
-// </div>
-
 
 export default withRouter(Game);
