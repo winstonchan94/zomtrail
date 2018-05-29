@@ -147,9 +147,59 @@ class Game extends Component {
     }
   }
 
+  handleEvent() {
+    document.getElementById('event-modal')
+      .style.display = 'block';
+  }
+
+  handleCloseModal() {
+    document.getElementById('event-modal')
+      .style.display = 'none';
+  }
+
+  renderModal() {
+    return (
+      <div id="event-modal" className="event-modal">
+        <div className="event-modal-content">
+          <h4>Zombie Ambush!</h4>
+          <img className='event-pic' src='/pic/Random-Zombies.png'></img>
+          <p>How'd we miss them? Quick! RUN AWAY!</p>
+          <div className='resources-gain'>
+            <table><tbody>
+              <tr>
+                <td><i className="fas fa-dollar-sign"></i></td>
+                <td>-12</td>
+              </tr>
+              <tr>
+                <td><i className="far fa-smile"></i></td>
+                <td>-20</td>
+              </tr>
+              <tr>
+                <td><i className="fas fa-clock"></i></td>
+                <td>-5</td>
+              </tr>
+              <tr>
+                <td><i className="far fa-heart"></i></td>
+                <td>+5</td>
+              </tr>
+            </tbody></table>
+          </div>
+          <div className='continue-buttons'>
+            <button
+              onClick={this.handleCloseModal}
+              className="continue mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+              OK
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   render() {
     return (
       <div className='game-div'>
+        {this.renderModal()}
         <Gmap />
         <div className='gameplay-screen'>
           <div className='gameplay-top'>
@@ -172,7 +222,8 @@ class Game extends Component {
             <h1 className='gameplay-score'>Score: 9000</h1>
           </div>
           <div className='gameplay-mid'>
-            <button className='event-button'>Event</button>
+            <button className='event-button'
+              onClick={this.handleEvent}>Event</button>
           </div>
           <div className='gameplay-bottom'>
             <div className='resources'>
