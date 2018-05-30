@@ -23,7 +23,7 @@ yarn-error.log*
 .tags
 
 config/db.js
-
+config/cloudinary.js
 
 bundle.js
 bundle.js.map
