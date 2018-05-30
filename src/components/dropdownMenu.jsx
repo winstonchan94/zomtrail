@@ -6,6 +6,7 @@ class DropdownMenu extends Component {
     super(props);
 
     this.handleLogout = this.handleLogout.bind(this);
+    this.handleScoreboard = this.handleScoreboard.bind(this);
   }
 
   handleOpenMenu() {
@@ -29,6 +30,10 @@ class DropdownMenu extends Component {
     });
   }
 
+  handleScoreboard() {
+    this.props.history.push("/scoreboard");
+  }
+
   render() {
     return (
       <div className='menu-div'>
@@ -40,7 +45,8 @@ class DropdownMenu extends Component {
         <div className='drop-down-menu'
           id='drop-down-menu'>
           <ul>
-            <li className='option-li'>Scoreboard</li>
+            <li className='option-li'
+              onClick={this.handleScoreboard}>Scoreboard</li>
             <li className='option-li'>Start A new game</li>
             <li className='option-li'
               onClick={this.handleLogout}>Logout</li>
