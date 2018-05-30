@@ -55,6 +55,11 @@ class Story extends Component {
         </p>
         <div className='continue-buttons'>
           <button
+            onClick={this.logout}
+            className="continue mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+            Logout
+          </button>
+          <button
             onClick={this.handleContinue}
             className="continue mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
             Continue
@@ -64,10 +69,5 @@ class Story extends Component {
     );
   }
 }
-  // <button
-  //   onClick={this.logout}
-  //   className="continue mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-  //   Logout
-  // </button>
 
 export default withRouter(Story);

@@ -61,7 +61,12 @@ class SignInWith extends Component {
       axios({
         method: 'GET',
         url: `/api/usersByEmail/${postData.email}`
-      }).then(function(res) { user = res.data[0]; userId = res.data[0]._id; })
+      }).then(function(res) {
+        if (res.data[0]) {
+          user = res.data[0];
+          userId = res.data[0]._id;
+        }
+       })
       .then(function() {
         if (!user) {
           axios({
