@@ -17,7 +17,6 @@ class Scoreboard extends Component {
     <div className="scoreboard-div"
       id="scoreboard-div" >
       <h2>Hight Scores</h2>
-      <h4>Score</h4>
       <table className='scoreboard-table'>
         <tbody>
         <tr>

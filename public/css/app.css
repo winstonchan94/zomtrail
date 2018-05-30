@@ -156,17 +156,10 @@
 }
 .scoreboard-table {
   font-size: 20px;
-  /* counter-reset: rowNumber; */
-}
-.scoreboard-table tr {
-  /* counter-increment: rowNumber; */
-}
-.scoreboard-table tr td:first-child::before {
-  /* content: counter(rowNumber); */
 }
 .scoreboard-table td {
-  /* text-align: center; */
   padding: 10px 15px;
+  text-align: right;
 }
 .back-buttons {
   display: flex;
