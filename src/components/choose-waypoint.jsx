@@ -11,6 +11,8 @@ class ChooseWaypoint extends Component {
     this.state = {
       pathId: this.props.match.params.pathId,
       path: null,
+      lastPoint: null,
+      secondPoint: null,
     };
   }
 
@@ -38,10 +40,14 @@ class ChooseWaypoint extends Component {
     axios({
       method: "GET",
       url: `/api/paths/${this.state.pathId}`
-    }).then(res => this.setState({ path: res.data[0] }))
+    }).then(res => this.setState({
+      path: res.data[0],
+      lastPoint: res.data[0].steps[res.data[0].steps.length - 1].end_point,
+      secondPoint: res.data[0].steps[res.data[0].steps.length - 1].start_point
+    }))
       .then(() => {
         let end = this.state.path.end_point;
-        let start = this.state.start_point;
+        let start = this.state.path.start_point;
         let filterNum = 10;
         if (end) {
           currentPos = { lat: end.latitude, lng: end.longitude };
@@ -72,13 +78,24 @@ class ChooseWaypoint extends Component {
         let alphabet = Array(26).fill(1).map((val, idx) => {
           return String.fromCharCode(val + idx + 64);
         });
-
-        locationData.slice(0, 10).forEach((point, idx) => {
-          let pos = {lat: point.latitude, lng: point.longitude};
-          let marker = new gmaps.Marker({
-            position: pos,
-            label: alphabet[idx],
-            map: map
+        let lastPointDesc;
+        let secondPointDesc;
+        if (this.state.lastPoint) {
+          lastPointDesc = this.state.lastPoint.description[0];
+          console.log("endpoint: " + lastPointDesc);
+        }
+        if (this.state.secondPoint) {
+          secondPointDesc = this.state.secondPoint.description[0];
+          console.log("startpoing: " + secondPointDesc);
+        }
+        locationData.filter(el => (el.description !== lastPointDesc)
+          && (el.description !== secondPointDesc))
+          .slice(0, 10).forEach((point, idx) => {
+            let pos = {lat: point.latitude, lng: point.longitude};
+            let marker = new gmaps.Marker({
+              position: pos,
+              label: alphabet[idx],
+              map: map
           });
           bounds.extend(pos);
 
