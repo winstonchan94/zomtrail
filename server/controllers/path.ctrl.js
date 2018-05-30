@@ -9,16 +9,33 @@ exports.apiPost = (req, res) => {
 
   Object.assign(path, req.body.path);
   let steps = path.steps;
-
   path.save(function(err) {
     if (err) {
       res.send(err);
     } else {
-      res.json(path);
+      res.send(path);
     }
   });
 };
-
+exports.apiGetOne = (req, res) => {
+  Path.find({pathId: req.params.pathId}, function(err, path) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(path);
+    }
+  });
+};
+exports.apiUpdate = (req, res) => {
+  Path.findOneAndUpdate({pathId: req.params.pathId}, req.body.path,
+    function(err, path) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send(path);
+      }
+    });
+};
 exports.apiGetAll = function(req, res) {
   Path.find().sort('updatedAt')
       .limit(20)
@@ -31,7 +48,6 @@ exports.apiGetAll = function(req, res) {
     }
   });
 };
-
 exports.apiDelete = function(req, res) {
   Path.findByIdAndRemove(req.params.path_id, function(err, path) {
     if (err) {

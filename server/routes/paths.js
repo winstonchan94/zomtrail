@@ -9,8 +9,10 @@ router.route('/paths')
   .delete(paths.apiDeleteAll);
 
 
-router.route('/paths/:path_id')
-  .delete(paths.apiDelete);
+router.route('/paths/:pathId')
+  .get(paths.apiGetOne)
+  .delete(paths.apiDelete)
+  .patch(paths.apiUpdate);
 
 //
 // module.exports = function(app, db) {

@@ -11,7 +11,7 @@ fs.readFile('public-art-locations.tsv', 'utf8', (err, string) => {
     let longitude = position.getLongitude(); // -74.123 ✓
 
     return {
-      discription: row[0],
+      description: row[0],
       address: row[1],
       latitude,
       longitude

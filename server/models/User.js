@@ -8,10 +8,7 @@ let UserSchema = new Schema(
   {
     name: String,
     email: String,
-    provider: String,
-    provider_id: String,
-    token: String,
-    provider_pic: String
+    score: Number,
   }
 );
 

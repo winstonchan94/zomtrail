@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
-
+import axios from 'axios';
 class Story extends Component {
   constructor(props) {
     super(props);
-
-    this.handleContiune = this.handleContiune.bind(this);
+    this.userId = this.props.match.params.userId;
+    this.handleContinue = this.handleContinue.bind(this);
     this.logout = this.logout.bind(this);
+    this.state = {
+      path: null,
+      pathId: null
+    };
   }
 
-  handleContiune() {
-    this.props.history.push("/waypoints");
+  handleContinue() {
+    console.log(this.state);
+    if (this.state.pathId){
+      this.props.history.push(`/${this.userId}/${this.state.pathId}/waypoints`);
+    }
   }
 
   logout () {
@@ -25,6 +32,21 @@ class Story extends Component {
     });
   }
 
+  componentDidMount() {
+    axios({
+      method: "POST",
+      url: "/api/paths",
+      data: {
+        path: {
+          start_point: null,
+          end_point: null,
+          steps: [],
+          pathId: Math.floor(Math.random() * 100000000)
+        }
+      }
+    }).then(res => this.setState({ path: res.data, pathId: res.data.pathId }));
+  }
+
   render() {
     return (
       <div className='story-div'>
@@ -33,9 +55,9 @@ class Story extends Component {
         </p>
         <div className='continue-buttons'>
           <button
-            onClick={this.handleContiune}
+            onClick={this.handleContinue}
             className="continue mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-            Contiune
+            Continue
           </button>
         </div>
       </div>

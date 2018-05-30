@@ -1,22 +1,19 @@
-const usercontroller = require('./../controllers/user.ctrl');
+const userController = require('../controllers/user.ctrl');
+const express  = require('express');
+const router = express.Router();
+const ObjectID = require('mongodb').ObjectID;
 
-module.exports = (router) => {
-    /**
-     * get all users
-     */
-    router
-      .route('/users')
-      .get(usercontroller.getAll);
-    /**
-     * add an user
-     */
-    // router
-    //   .route('/user')
-    //   .post(data, usercontroller.addUser);
-    /**
-     * get a particlular user
-     */
-    router
-      .route('/user/:id')
-      .get(usercontroller.getArticle);
-};
+/**
+ * get all users
+ */
+router.route('/users')
+  .post(userController.apiPost);
+
+router.route('/users/:id')
+  .get(userController.apiGet);
+
+router.route('/usersByEmail/:email')
+  .get(userController.apiGetByEmail);
+
+
+module.exports = router;

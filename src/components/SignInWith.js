@@ -11,17 +11,18 @@ import {
 class SignInWith extends Component {
   constructor(props) {
     super(props);
-
+    this.redirect = this.redirect.bind(this);
     this.renderButton = this.renderButton.bind(this);
     this.logout = this.logout.bind(this);
     this.responseGoogle = this.responseGoogle.bind(this);
   }
-
-
+  redirect() {
+    this.props.history.push(`/story`);
+  }
   logout () {
     let auth2 = window.gapi.auth2.getAuthInstance();
     auth2.signOut().then(() => {
-      console.log('Successfully sign out');
+      console.log('Successfully signed out');
     });
 
     document.getElementById('signin-button').style.display = 'block';
@@ -53,19 +54,29 @@ class SignInWith extends Component {
     console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
 
     const idToken = googleUser.getAuthResponse().id_token;
-    console.log("ID Token: " + idToken);
-
-    // document.getElementById('signin-button').style.display = 'none';
-    // document.getElementById('logout-div').style.display = 'flex';
-    // document.getElementById('greeting').innerHTML = `Hello, ${postData.name}`;
-
-    // redirect
-    this.props.history.push("/story");
-
-    // window.currentUser = googleUser;
-    // build our user data
-    // this.props.SignInUser(postData);
-    // this.props.toggleClose();
+    let thing = this.props.history;
+    let user = null;
+    let userId = null;
+    if (postData.email.length > 0) {
+      axios({
+        method: 'GET',
+        url: `/api/usersByEmail/${postData.email}`
+      }).then(function(res) { user = res.data[0]; userId = res.data[0]._id; })
+      .then(function() {
+        if (!user) {
+          axios({
+            method: "POST",
+            url: '/api/users',
+            data: {user: {name: postData.name, email: postData.email, score: 0}}
+          }).then(function(res){ user = res.data; userId = res.data._id; });
+        }
+      });
+      setTimeout(() => {
+        if (userId) {
+          this.props.history.push(`/${userId}/story`);
+        }
+      }, 1000);
+    }
   }
 
   componentDidMount() {
