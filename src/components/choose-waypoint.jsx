@@ -27,6 +27,10 @@ class ChooseWaypoint extends Component {
   }
 
   componentDidMount() {
+    // for material design lite
+    let button = document.querySelector('.continue');
+    window.componentHandler.upgradeElement(button);
+
     // testing current location
     axios({
       method: "GET",

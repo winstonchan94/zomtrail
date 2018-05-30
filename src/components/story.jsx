@@ -33,6 +33,10 @@ class Story extends Component {
   }
 
   componentDidMount() {
+    // for material design lite
+    let elements = document.querySelectorAll('.mdl-button, .mdl-tooltip');
+    window.componentHandler.upgradeElements(elements);
+
     axios({
       method: "POST",
       url: "/api/paths",

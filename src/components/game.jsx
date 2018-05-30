@@ -25,7 +25,18 @@ class Game extends Component {
 
   }
 
+  loadMaterialDesignLite() {
+    let elements = document.querySelectorAll('.mdl-button, .mdl-tooltip, .dir-textfield');
+    window.componentHandler.upgradeElements(elements);
+  }
+
+  componentDidUpdate() {
+    this.loadMaterialDesignLite();
+  }
+
   componentDidMount() {
+    this.loadMaterialDesignLite();
+
     axios({
       method: 'GET',
       url: `/api/paths/${this.state.pathId}`
@@ -151,24 +162,32 @@ class Game extends Component {
             </div>
             <div className='gameplay-bottom'>
               <div className='resources'>
-                <div className='resource'>
+                <div className='resource'
+                  id='resource-money'>
                   <i className="fas fa-dollar-sign"></i>
                   <span className='resource-amount'>100</span>
                 </div>
-                <div className='resource'>
+                <span htmlFor="resource-money" className="mdl-tooltip mdl-tooltip--large mdl-tooltip--right">Money</span>
+                <div className='resource'
+                  id='resource-morale'>
                   <i className="far fa-smile"></i>
                   <span className='resource-amount'>100</span>
                 </div>
+                <span htmlFor="resource-morale" className="mdl-tooltip mdl-tooltip--large mdl-tooltip--left">Morale</span>
               </div>
               <div className='resources'>
-                <div className='resource'>
+                <div className='resource'
+                  id='resource-health'>
                   <i className="far fa-heart"></i>
                   <span className='resource-amount'>100</span>
                 </div>
-                <div className='resource'>
+                <span htmlFor="resource-health" className="mdl-tooltip mdl-tooltip--large mdl-tooltip--right">Health</span>
+                <div className='resource'
+                  id='resource-Day'>
                   <i className="fas fa-clock"></i>
                   <span className='resource-amount'>Day 1</span>
                 </div>
+                <span htmlFor="resource-Day" className="mdl-tooltip mdl-tooltip--large mdl-tooltip--left">Day</span>
               </div>
               <div className='action-buttons'>
                 <button className='action-button'>Scavenge</button>
