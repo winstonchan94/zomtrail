@@ -3,9 +3,13 @@ import Gmap from './gmap';
 import EventModal from './eventModal';
 import TakePhotoModal from './takePhotoModal';
 import DropdownMenu from './dropdownMenu';
+import TutorialModal from './tutorialModal';
+import Cookies from 'universal-cookie';
 import { withRouter } from "react-router-dom";
 import locationData from '../../locationData';
 import axios from 'axios';
+
+const cookies = new Cookies();
 
 var recognition;
 if (window.hasOwnProperty('webkitSpeechRecognition')) {
@@ -32,6 +36,14 @@ class Game extends Component {
 
   componentDidUpdate() {
     this.loadMaterialDesignLite();
+
+    let shownTutorial = cookies.get('shownTutorial');
+    if (shownTutorial) {
+      let elements = document.querySelectorAll('.tutorial-modal');
+      elements.forEach((el) => {
+        el.style.display = "none";
+      });
+    }
   }
 
   componentDidMount() {
@@ -64,10 +76,6 @@ class Game extends Component {
 
     };
   }
-
-
-
-
 
   startDictation() {
     if (window.hasOwnProperty('webkitSpeechRecognition')) {
@@ -112,10 +120,13 @@ class Game extends Component {
   renderSpeechToTextButton() {
     if (window.hasOwnProperty('webkitSpeechRecognition')) {
       return (
-        <div>
-          <img onClick={this.startDictation} src="//i.imgur.com/cHidSVu.gif" />
-        </div>
+        <div></div>
       );
+      // return (
+      //   <div>
+      //     <img onClick={this.startDictation} src="//i.imgur.com/cHidSVu.gif" />
+      //   </div>
+      // );
     } else {
       return ( <div></div> );
     }
@@ -141,6 +152,11 @@ class Game extends Component {
   }
 
   render() {
+    let gameplayTutorialText = "This is the gameplay screen.  All resources except Days increase your score-- and its game over if they hit 0! Actions recover them, but have cooldowns. Lastly, remember to click the event button when it shows up to progress in the game!";
+
+    let directionTutorialText = "Enter the directions to the next waypoint here. Remember that it is the apocalypse and so there are no street signs! Using street names will invalidate your entry!";
+
+
     if (!this.state.path || !this.state.user) {
       return (<div>loading</div>);
     } else {
@@ -150,6 +166,7 @@ class Game extends Component {
           <TakePhotoModal pathId={this.state.pathId} userId={this.state.userId}/>
           <Gmap />
           <div className='gameplay-screen'>
+            <TutorialModal name='gameplay' text={gameplayTutorialText}/>/>
             <div className='gameplay-top'>
               <DropdownMenu />
               <h1 className='gameplay-score'>Score: {this.state.user.score}</h1>
@@ -200,12 +217,13 @@ class Game extends Component {
             className='directions'
             id='directions-1'
             onSubmit={this.handleCheckIn}>
+            <TutorialModal name='direction' text={directionTutorialText}/>
             <div className="dir-textfield mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
               id="dir-textfield">
               <textarea
                 onChange={this.update()}
                 className="dir-textarea mdl-textfield__input"
-                type="text" rows= "4" id="direction" />
+                type="text" rows= "6" id="direction" />
               <label
                 className="dir-label mdl-textfield__label"
                 htmlFor="direction">Directions
