@@ -3,6 +3,17 @@ import locationData from '../../locationData';
 import * as _ from 'geolocation-marker';
 
 class Gmap extends Component {
+  constructor(props) {
+    super(props);
+
+    this.geoMarker = null;
+  }
+
+  componentWillUnmount() {
+    // sovling problem with visit scoreboard and back
+    this.geoMarker.setMap();
+  }
+
   componentDidMount() {
     let pos = {lat: 37.7807117, lng: -122.4114988};
     let gmaps = window.google.maps;
@@ -14,13 +25,13 @@ class Gmap extends Component {
       fullscreenControl: false,
     });
 
+    this.geoMarker = new window.GeolocationMarker(map);
+    this.geoMarker.setCircleOptions({ visible: false });
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         pos.lat = position.coords.latitude;
         pos.lng = position.coords.longitude;
-
-        let GeoMarker = new window.GeolocationMarker(map);
-        GeoMarker.setCircleOptions({ visible: false });
 
         let posB = {
           lat: locationData[30].latitude,
@@ -81,6 +92,5 @@ class Gmap extends Component {
     );
   }
 }
-// <p className='map-info'></p>
 
 export default Gmap;
