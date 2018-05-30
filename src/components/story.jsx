@@ -33,7 +33,7 @@ class Story extends Component {
     }).then(() => this.handleContinue());
   }
   handleContinue() {
-    if (this.state.pathId){
+    if (this.state.pathId) {
       axios({
         method: "PATCH",
         url: `/api/users/${this.userId}`,
@@ -77,15 +77,13 @@ class Story extends Component {
             }
           }
         }).then((result) => {
-          let editUser = this.state.user;
-          editUser.currentPathId = result.data.pathId;
-          this.setState({ path: result.data, pathId: result.data.pathId, user: editUser });
+          this.setState({ path: result.data, pathId: result.data.pathId });
         });
       } else {
         axios({
           method: "GET",
           url: `/api/paths/${this.state.user.currentPathId}`
-        }).then(data => this.setState({ path: data.data, pathId: this.state.user.currentPathId }));
+        }).then(data => this.setState({ path: data.data[0], pathId: this.state.user.currentPathId }));
       }
     });
 
@@ -93,8 +91,8 @@ class Story extends Component {
 
   render() {
     let continueButton;
-    if (this.state.user) {
-      if (this.state.user.currentPathId > -1) {
+    if (this.state.user && this.state.path) {
+      if ((this.state.user.currentPathId > -1) && (this.state.path.steps.length < 9)) {
         continueButton = (
                   <button
                     onClick={this.handleContinue}
