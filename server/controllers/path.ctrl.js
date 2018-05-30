@@ -9,16 +9,23 @@ exports.apiPost = (req, res) => {
 
   Object.assign(path, req.body.path);
   let steps = path.steps;
-
   path.save(function(err) {
     if (err) {
       res.send(err);
     } else {
-      res.json(path);
+      res.send(path);
     }
   });
 };
-
+exports.apiGetOne = (req, res) => {
+  Path.findById(req.params.id, function(err, path) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(path);
+    }
+  });
+};
 exports.apiGetAll = function(req, res) {
   Path.find().sort('updatedAt')
       .limit(20)

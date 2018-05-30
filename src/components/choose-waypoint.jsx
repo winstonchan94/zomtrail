@@ -5,6 +5,10 @@ import locationData from '../../locationData';
 class ChooseWaypoint extends Component {
   constructor(props) {
     super(props);
+    this.userId = this.props.match.params.userId;
+    this.state = {
+      pathId: null
+    };
   }
 
   distance(pos1, pos2) {
@@ -71,8 +75,7 @@ class ChooseWaypoint extends Component {
         // map.panTo(pos);
         let confirmed = confirm(`Do you want to go to ${point.discription} next?`);
         if (confirmed) {
-          //
-          this.props.history.push("/game");
+          this.props.history.push(`/${this.userId}/game`);
         }
         // infowindow.open(map, marker);
       });

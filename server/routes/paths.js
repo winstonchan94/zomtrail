@@ -10,6 +10,7 @@ router.route('/paths')
 
 
 router.route('/paths/:path_id')
+  .get(paths.getOne)
   .delete(paths.apiDelete);
 
 //
