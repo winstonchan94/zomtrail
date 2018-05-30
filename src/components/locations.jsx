@@ -22,7 +22,7 @@ class Locations extends Component {
       bounds.extend(pos);
       const contentString =
         `<p>${idx}</p>` +
-        `<p>${point.discription}</p>` +
+        `<p>${point.description}</p>` +
         `<p>${point.address}</p>`;
       const infowindow = new gmaps.InfoWindow({
           content: contentString

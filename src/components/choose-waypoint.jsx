@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import locationData from '../../locationData';
-
+import axios from 'axios';
 class ChooseWaypoint extends Component {
   constructor(props) {
     super(props);
+    this.userId = this.props.match.params.userId;
+    this.state = {
+      pathId: this.props.match.params.pathId,
+      path: null,
+    };
   }
 
   distance(pos1, pos2) {
@@ -23,6 +28,11 @@ class ChooseWaypoint extends Component {
 
   componentDidMount() {
     // testing current location
+    axios({
+      method: "GET",
+      url: `/api/paths/${this.state.pathId}`
+    }).then(res => this.setState({ path: res.data[0] }));
+
     let currentPos = {
       lat: 37.791666666666664,
       lng: -122.41027777777778,
@@ -60,7 +70,7 @@ class ChooseWaypoint extends Component {
       const contentString =
         // `<p>${idx}</p>` +
         `<p>Distance: ${this.distance(currentPos, pos) * 100}</p>` +
-        `<p>${point.discription}</p>`;
+        `<p>${point.description}</p>`;
         // `<p>${point.address}</p>`;
 
       const infowindow = new gmaps.InfoWindow({
@@ -69,10 +79,33 @@ class ChooseWaypoint extends Component {
 
       marker.addListener('click', () => {
         // map.panTo(pos);
-        let confirmed = confirm(`Do you want to go to ${point.discription} next?`);
+        let emptyStep = {
+          start_point: point,
+          end_point: null,
+          direction: ""
+        };
+        let confirmed = confirm(`Do you want to go to ${point.description} next?`);
         if (confirmed) {
-          //
-          this.props.history.push("/game");
+          let editPath = this.state.path;
+          if (!this.state.path.start_point) {
+            editPath.start_point = point;
+            editPath.steps.push(emptyStep);
+          } else if (!this.state.path.end_point) {
+            editPath.end_point = point;
+            editPath.steps[0].end_point = point;
+          } else {
+            let newStart = editPath.end_point;
+            editPath.end_point = point;
+            editPath.steps.push(emptyStep);
+            editPath.steps[editPath.steps.length - 1].start_point = newStart;
+            editPath.steps[editPath.steps.length - 1].end_point = point;
+          }
+          this.setState({ path: editPath });
+          axios({
+            method: 'PATCH',
+            url: `/api/paths/${this.state.pathId}`,
+            data: { path: editPath }
+          }).then(() => this.props.history.push(`/${this.userId}/${this.state.pathId}/game`));
         }
         // infowindow.open(map, marker);
       });
