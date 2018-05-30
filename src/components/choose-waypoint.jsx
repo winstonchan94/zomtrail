@@ -31,16 +31,12 @@ class ChooseWaypoint extends Component {
     let button = document.querySelector('.continue');
     window.componentHandler.upgradeElement(button);
 
+    let currentPos;
     // testing current location
     axios({
       method: "GET",
       url: `/api/paths/${this.state.pathId}`
     }).then(res => this.setState({ path: res.data[0] }));
-
-    let currentPos = {
-      lat: 37.791666666666664,
-      lng: -122.41027777777778,
-    };
 
     let gmaps = window.google.maps;
     let map = new gmaps.Map(document.getElementById('waypoint-map'), {
