@@ -118,15 +118,16 @@ class Game extends Component {
   }
 
   renderSpeechToTextButton() {
-    if (window.hasOwnProperty('webkitSpeechRecognition')) {
-      return (
-        <div></div>
-      );
+
+    if (this.state.path.end_point && window.hasOwnProperty('webkitSpeechRecognition')) {
       // return (
-      //   <div>
-      //     <img onClick={this.startDictation} src="//i.imgur.com/cHidSVu.gif" />
-      //   </div>
+      //   <div></div>
       // );
+      return (
+        <div>
+          <img onClick={this.startDictation} src="//i.imgur.com/cHidSVu.gif" />
+        </div>
+      );
     } else {
       return ( <div></div> );
     }
