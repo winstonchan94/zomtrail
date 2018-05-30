@@ -79,12 +79,35 @@ class ChooseWaypoint extends Component {
 
       marker.addListener('click', () => {
         // map.panTo(pos);
+        let emptyStep = {
+          start_point: point,
+          end_point: null,
+          directions: null
+        };
         let confirmed = confirm(`Do you want to go to ${point.description} next?`);
         if (confirmed) {
-          if (!this.state.path.start_point) {
+          let editPath = this.state.path;
 
+          if (!this.state.path.start_point) {
+            editPath.start_point = point;
+            editPath.steps.push(emptyStep);
+          } else if (!this.state.path.end_point) {
+            editPath.end_point = point;
+            editPath.steps[0].end_point = point;
+          } else {
+            let newStart = editPath.end_point;
+            editPath.end_point = point;
+            editPath.steps.push(emptyStep);
+            editPath.steps[editPath.steps.length - 1].start_point = newStart;
+            editPath.steps[editPath.steps.length - 1].end_point = point;
           }
-          this.props.history.push(`/${this.userId}/${this.state.pathId}/game`);
+          this.setState({ path: editPath });
+          axios({
+            method: 'PATCH',
+            url: `/api/paths/${this.state.pathId}`,
+            data: { path: editPath }
+          }).then(res => console.log(res));
+          // this.props.history.push(`/${this.userId}/${this.state.pathId}/game`);
         }
         // infowindow.open(map, marker);
       });

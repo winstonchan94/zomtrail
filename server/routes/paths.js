@@ -11,7 +11,8 @@ router.route('/paths')
 
 router.route('/paths/:pathId')
   .get(paths.apiGetOne)
-  .delete(paths.apiDelete);
+  .delete(paths.apiDelete)
+  .patch(paths.apiUpdate);
 
 //
 // module.exports = function(app, db) {
