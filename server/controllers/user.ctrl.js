@@ -13,8 +13,18 @@ exports.apiPost = (req, res) => {
     }
   });
 };
+exports.apiUpdate = (req, res) => {
+  User.findOneAndUpdate({ _id: req.params.userId }, req.body.user,
+    function(err, user) {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send(user);
+      }
+    });
+};
 exports.apiGet = (req, res) => {
-  User.findById(req.params.id, function(err, user) {
+  User.findById(req.params.userId, function(err, user) {
     if (err) {
       res.send(err);
     } else {

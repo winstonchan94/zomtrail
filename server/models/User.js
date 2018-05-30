@@ -9,6 +9,7 @@ let UserSchema = new Schema(
     name: String,
     email: String,
     score: Number,
+    currentPathId: Number
   }
 );
 
