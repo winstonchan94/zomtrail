@@ -72,7 +72,7 @@ class SignInWith extends Component {
           axios({
             method: "POST",
             url: '/api/users',
-            data: {user: {name: postData.name, email: postData.email, score: 0}}
+            data: {user: { name: postData.name, email: postData.email, score: 0, currentPathId: -1 } }
           }).then(function(res){ user = res.data; userId = res.data._id; });
         }
       });

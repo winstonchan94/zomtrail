@@ -31,7 +31,7 @@ class DropdownMenu extends Component {
   }
 
   handleScoreboard() {
-    this.props.history.push("/scoreboard");
+    this.props.history.push(`/scoreboard`);
   }
 
   render() {
