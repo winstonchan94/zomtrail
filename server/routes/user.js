@@ -9,8 +9,9 @@ const ObjectID = require('mongodb').ObjectID;
 router.route('/users')
   .post(userController.apiPost);
 
-router.route('/users/:id')
-  .get(userController.apiGet);
+router.route('/users/:userId')
+  .get(userController.apiGet)
+  .patch(userController.apiUpdate);
 
 router.route('/usersByEmail/:email')
   .get(userController.apiGetByEmail);

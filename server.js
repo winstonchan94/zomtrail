@@ -9,7 +9,7 @@ const cors = require('cors');
 const router = express.Router();
 const axios = require('axios');
 const port = process.env.PORT || 3000;
-
+const fetch = require('node-fetch');
 const pathRouter = require("./server/routes/paths");
 const userRouter = require("./server/routes/user");
 app.use(bodyParser.json());
@@ -17,6 +17,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // MongoDB
 const db = process.env.MONGODB_URI || require('./config/db');
+
+
 
 /**
  * API
@@ -27,18 +29,6 @@ const db = process.env.MONGODB_URI || require('./config/db');
 app.use('/api', pathRouter);
 app.use('/api', userRouter);
 
-// app.get('/api', function(req, res, next) {
-//     let data = {
-//         message: 'Hello World!'
-//     };
-//     res.status(200).send(data);
-// });
-// app.post('/api', function(req, res, next) {
-//     let data = req.body;
-//     console.log(req.body);
-//     // query a database and save data
-//     res.status(200).send(data);
-// });
 
 /**
  * STATIC FILES

@@ -41,12 +41,13 @@ class TakePhotoModal extends Component {
   uploadHandler() {
     console.log(this.state.selectedFile);
     let editPath = this.state.path;
+    let editUser = this.state.user;
     const formData = new FormData();
     formData.append('file', this.state.selectedFile);
     formData.append('upload_preset', "mq30rlbh");
     axios({
-      url: CLOUDINARY_URL,
       method: 'POST',
+      url: '/uploadPicture',
       headers: {
         "X-Requested-With": "XMLHttpRequest",
         'Content-Type': "application/x-www-form-urlencoded"
@@ -67,10 +68,23 @@ class TakePhotoModal extends Component {
         url: `/api/paths/${this.props.pathId}`,
         data: { path: editPath }
       }).then(result => console.log(result.data));
+      let multiplier = (editPath.steps.length * 0.1) + 1.0;
+      editUser.score += (multiplier * 1000);
+      this.setState({ user: editUser });
+      axios({
+        method: 'PATCH',
+        url: `/api/users/${this.props.userId}`,
+        data: { user: editUser }
+      }).then(result => console.log(result.data));
     });
-    document.getElementById('photo-modal')
+    if (this.state.selectedFile) {
+      document.getElementById('photo-modal')
       .style.display = 'none';
+    }
   }
+
+
+
 // res.data.secure_url
   render() {
     if (!this.state.path || !this.state.user) {
