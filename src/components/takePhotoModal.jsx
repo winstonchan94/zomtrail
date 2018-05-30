@@ -46,7 +46,7 @@ class TakePhotoModal extends Component {
     formData.append('file', this.state.selectedFile);
     formData.append('upload_preset', "mq30rlbh");
     axios({
-      url: CLOUDINARY_URL,
+      url: window.CLOUDINARY_URL,
       method: 'POST',
       headers: {
         "X-Requested-With": "XMLHttpRequest",
