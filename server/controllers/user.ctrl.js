@@ -23,6 +23,12 @@ exports.apiUpdate = (req, res) => {
       }
     });
 };
+
+exports.apiGetHighScorers = (req, res) => {
+  User.find({}).sort( { score: -1 } )
+    .then(users => res.send(users));
+};
+
 exports.apiGet = (req, res) => {
   User.findById(req.params.userId, function(err, user) {
     if (err) {

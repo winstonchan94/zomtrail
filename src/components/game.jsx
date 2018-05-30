@@ -168,7 +168,7 @@ class Game extends Component {
           <div className='gameplay-screen'>
             <TutorialModal name='gameplay' text={gameplayTutorialText}/>/>
             <div className='gameplay-top'>
-              <DropdownMenu />
+              <DropdownMenu userId={this.state.userId} pathId={this.state.pathId}/>
               <h1 className='gameplay-score'>Score: {this.state.user.score}</h1>
             </div>
             <div className='gameplay-mid'>

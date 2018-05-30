@@ -34,7 +34,7 @@ class App extends Component {
           <Route exact path="/:userId/:pathId/game" component={Game} />
           <Route exact path="/location" component={Locations} />
           <Route exact path="/:userId/:pathId/waypoints" component={ChooseWaypoint} />
-          <Route exact path="/scoreboard" component={Scoreboard} />
+          <Route exact path="/:userId/:pathId/scoreboard" component={Scoreboard} />
           <Route path="**" component={notValidPath} />
         </Switch>
       </div>
