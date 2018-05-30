@@ -36,82 +36,95 @@ class ChooseWaypoint extends Component {
     axios({
       method: "GET",
       url: `/api/paths/${this.state.pathId}`
-    }).then(res => this.setState({ path: res.data[0] }));
-
-    let gmaps = window.google.maps;
-    let map = new gmaps.Map(document.getElementById('waypoint-map'), {
-      zoom: 10,
-      center: currentPos,
-      streetViewControl: false,
-      mapTypeControl: false,
-    });
-
-    const bounds = new gmaps.LatLngBounds();
-
-    locationData.sort((a, b) => {
-      let posA = this.locationToPos(a);
-      let posB = this.locationToPos(b);
-      return this.distance(currentPos, posA) - this.distance(currentPos, posB);
-    });
-
-    let alphabet = Array(26).fill(1).map((val, idx) => {
-      return String.fromCharCode(val + idx + 64);
-    });
-
-    locationData.slice(0, 5).forEach((point, idx) => {
-      let pos = {lat: point.latitude, lng: point.longitude};
-      let marker = new gmaps.Marker({
-        position: pos,
-        label: alphabet[idx],
-        map: map
-      });
-      bounds.extend(pos);
-
-      const contentString =
-        // `<p>${idx}</p>` +
-        `<p>Distance: ${this.distance(currentPos, pos) * 100}</p>` +
-        `<p>${point.description}</p>`;
-        // `<p>${point.address}</p>`;
-
-      const infowindow = new gmaps.InfoWindow({
-          content: contentString
+    }).then(res => this.setState({ path: res.data[0] }))
+      .then(() => {
+        if (this.state.path.end_point) {
+          currentPos = this.state.path.end_point;
+          console.log(currentPos);
+        } else {
+          currentPos = this.state.path.start_point;
+          console.log(currentPos);
+        }
+        let currentCoords = { lat: currentPos.latitude, lng: currentPos.longitude };
+        let gmaps = window.google.maps;
+        let map = new gmaps.Map(document.getElementById('waypoint-map'), {
+          zoom: 10,
+          center: currentCoords,
+          streetViewControl: false,
+          mapTypeControl: false,
         });
 
-      marker.addListener('click', () => {
-        // map.panTo(pos);
-        let emptyStep = {
-          start_point: point,
-          end_point: null,
-          direction: ""
-        };
-        let confirmed = confirm(`Do you want to go to ${point.description} next?`);
-        if (confirmed) {
-          let editPath = this.state.path;
-          if (!this.state.path.start_point) {
-            editPath.start_point = point;
-            editPath.steps.push(emptyStep);
-          } else if (!this.state.path.end_point) {
-            editPath.end_point = point;
-            editPath.steps[0].end_point = point;
-          } else {
-            let newStart = editPath.end_point;
-            editPath.end_point = point;
-            editPath.steps.push(emptyStep);
-            editPath.steps[editPath.steps.length - 1].start_point = newStart;
-            editPath.steps[editPath.steps.length - 1].end_point = point;
-          }
-          this.setState({ path: editPath });
-          axios({
-            method: 'PATCH',
-            url: `/api/paths/${this.state.pathId}`,
-            data: { path: editPath }
-          }).then(() => this.props.history.push(`/${this.userId}/${this.state.pathId}/game`));
-        }
-        // infowindow.open(map, marker);
-      });
-    });
+        const bounds = new gmaps.LatLngBounds();
 
-    map.fitBounds(bounds);
+        locationData.sort((a, b) => {
+          let posA = this.locationToPos(a);
+          let posB = this.locationToPos(b);
+          return this.distance(currentCoords, posA) - this.distance(currentCoords, posB);
+        });
+
+        let alphabet = Array(26).fill(1).map((val, idx) => {
+          return String.fromCharCode(val + idx + 64);
+        });
+
+        locationData.slice(0, 10).forEach((point, idx) => {
+          let pos = {lat: point.latitude, lng: point.longitude};
+          let marker = new gmaps.Marker({
+            position: pos,
+            label: alphabet[idx],
+            map: map
+          });
+          bounds.extend(pos);
+
+          const contentString =
+            // `<p>${idx}</p>` +
+            `<p>Distance: ${this.distance(currentPos, pos) * 100}</p>` +
+            `<p>${point.description}</p>`;
+            // `<p>${point.address}</p>`;
+
+          const infowindow = new gmaps.InfoWindow({
+              content: contentString
+            });
+
+          marker.addListener('click', () => {
+            // map.panTo(pos);
+            let emptyStep = {
+              start_point: point,
+              end_point: null,
+              direction: ""
+            };
+            let confirmed = confirm(`Do you want to go to ${point.description} next?`);
+            if (confirmed) {
+              let editPath = this.state.path;
+              if (!this.state.path.start_point) {
+                editPath.start_point = point;
+                editPath.steps.push(emptyStep);
+              } else if (!this.state.path.end_point) {
+                editPath.end_point = point;
+                editPath.steps[0].end_point = point;
+              } else {
+                let newStart = editPath.end_point;
+                editPath.end_point = point;
+                editPath.steps.push(emptyStep);
+                editPath.steps[editPath.steps.length - 1].start_point = newStart;
+                editPath.steps[editPath.steps.length - 1].end_point = point;
+              }
+              this.setState({ path: editPath });
+              axios({
+                method: 'PATCH',
+                url: `/api/paths/${this.state.pathId}`,
+                data: { path: editPath }
+              }).then(() => this.props.history.push(`/${this.userId}/${this.state.pathId}/game`));
+            }
+            // infowindow.open(map, marker);
+          });
+        });
+
+        map.fitBounds(bounds);
+
+      }
+    );
+
+
   }
 
   handleCloseModal() {
