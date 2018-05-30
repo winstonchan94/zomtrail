@@ -46,6 +46,7 @@ class Gmap extends Component {
         if (this.path.steps.length > 0) {
           for (let i = 0; i < this.path.steps.length; i++) {
             locations.push( { lat: this.path.steps[i].start_point.latitude, lng: this.path.steps[i].start_point.longitude } );
+            console.log(locations);
           }
           if (this.path.end_point) {
             locations.push( { lat: this.path.end_point.latitude, lng: this.path.end_point.longitude });

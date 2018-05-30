@@ -157,10 +157,41 @@ class Game extends Component {
 
     let directionTutorialText = "Enter the directions to the next waypoint here. Remember that it is the apocalypse and so there are no street signs! Using street names will invalidate your entry!";
 
-
+    let textArea;
     if (!this.state.path || !this.state.user) {
       return (<div>loading</div>);
     } else {
+      if (this.state.path.end_point) {
+        textArea = (
+          <form
+            className='directions'
+            id='directions-1'
+            onSubmit={this.handleCheckIn}>
+            <TutorialModal name='direction' text={directionTutorialText}/>
+            <div className="dir-textfield mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
+              id="dir-textfield">
+              <textarea
+                onChange={this.update()}
+                className="dir-textarea mdl-textfield__input"
+                type="text" rows= "6" id="direction" />
+              <label
+                className="dir-label mdl-textfield__label"
+                htmlFor="direction">Directions
+              </label>
+            </div>
+            <div className='summit-action-buttons'>
+              <input
+                type='submit'
+                value='Submit'
+                className="summit-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+              </input>
+            </div>
+          </form>);
+      } else {
+        textArea = (
+          <h2 className="no-text-field">Please make your way to the starting waypoint you've chosen and record an image to begin your journey!</h2>
+        );
+      }
       return (
         <div className='game-div'>
           <EventModal />
@@ -214,30 +245,7 @@ class Game extends Component {
               </div>
             </div>
           </div>
-          <form
-            className='directions'
-            id='directions-1'
-            onSubmit={this.handleCheckIn}>
-            <TutorialModal name='direction' text={directionTutorialText}/>
-            <div className="dir-textfield mdl-textfield mdl-js-textfield mdl-textfield--floating-label"
-              id="dir-textfield">
-              <textarea
-                onChange={this.update()}
-                className="dir-textarea mdl-textfield__input"
-                type="text" rows= "6" id="direction" />
-              <label
-                className="dir-label mdl-textfield__label"
-                htmlFor="direction">Directions
-              </label>
-            </div>
-            <div className='summit-action-buttons'>
-              <input
-                type='submit'
-                value='Submit'
-                className="summit-button mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-              </input>
-            </div>
-          </form>
+          {textArea}
           {this.renderSpeechToTextButton()}
         </div>
       );

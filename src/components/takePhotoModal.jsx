@@ -75,7 +75,11 @@ class TakePhotoModal extends Component {
         method: 'PATCH',
         url: `/api/users/${this.props.userId}`,
         data: { user: editUser }
-      }).then(result => console.log(result.data));
+      }).then(() => {
+        if (!this.state.path.end_point) {
+          this.props.history.push(`/${this.props.userId}/${this.props.pathId}/waypoints`);
+        }
+      });
     });
     if (this.state.selectedFile) {
       document.getElementById('photo-modal')
@@ -109,4 +113,4 @@ class TakePhotoModal extends Component {
   }
 }
 
-export default TakePhotoModal;
+export default withRouter(TakePhotoModal);

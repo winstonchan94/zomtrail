@@ -21,6 +21,9 @@
   width: 80%; /* Could be more or less, depending on screen size */
 }
 
+.no-text-field {
+  text-align: center;
+}
 
 /* Take photo modal */
 .photo-modal {

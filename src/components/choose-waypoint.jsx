@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import locationData from '../../locationData';
 import axios from 'axios';
+import * as _ from 'geolocation-marker';
+
 class ChooseWaypoint extends Component {
   constructor(props) {
     super(props);
@@ -38,28 +40,33 @@ class ChooseWaypoint extends Component {
       url: `/api/paths/${this.state.pathId}`
     }).then(res => this.setState({ path: res.data[0] }))
       .then(() => {
-        if (this.state.path.end_point) {
-          currentPos = this.state.path.end_point;
-          console.log(currentPos);
+        let end = this.state.path.end_point;
+        let start = this.state.start_point;
+        let filterNum = 10;
+        if (end) {
+          currentPos = { lat: end.latitude, lng: end.longitude };
+        } else if (start) {
+          currentPos = { lat: start.latitude, lng: start.longitude };
         } else {
-          currentPos = this.state.path.start_point;
-          console.log(currentPos);
+          currentPos = { lat: 37.7807117, lng: -122.4114988 };
+          filterNum = 40;
         }
-        let currentCoords = { lat: currentPos.latitude, lng: currentPos.longitude };
         let gmaps = window.google.maps;
         let map = new gmaps.Map(document.getElementById('waypoint-map'), {
           zoom: 10,
-          center: currentCoords,
+          center: currentPos,
           streetViewControl: false,
           mapTypeControl: false,
         });
+        this.geoMarker = new window.GeolocationMarker(map);
+        this.geoMarker.setCircleOptions({ visible: false });
 
         const bounds = new gmaps.LatLngBounds();
 
         locationData.sort((a, b) => {
           let posA = this.locationToPos(a);
           let posB = this.locationToPos(b);
-          return this.distance(currentCoords, posA) - this.distance(currentCoords, posB);
+          return this.distance(currentPos, posA) - this.distance(currentPos, posB);
         });
 
         let alphabet = Array(26).fill(1).map((val, idx) => {
@@ -133,13 +140,19 @@ class ChooseWaypoint extends Component {
   }
 
   render() {
+    let modalMessage;
+    if (this.state.path && !this.state.path.start_point){
+      modalMessage = 'Please choose your starting waypoint. When you arrive, you can check in and begin your journey!';
+    } else {
+      modalMessage = 'Please choose your next waypoint. Be aware that farther waypoints present more chances for events!';
+    }
     return (
       <div className='choose-waypoint-div'>
         <div id="modal" className="modal">
           <div className="modal-content">
             <span className="close"
               onClick={this.handleCloseModal}>&times;</span>
-            <p>Please choose your next waypoint. Be aware that farther waypoints present more chances for events!</p>
+            <p>{modalMessage}</p>
             <div className='continue-buttons'>
               <button
                 onClick={this.handleCloseModal}
