@@ -15,7 +15,7 @@
 }
 .modal-content {
   background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
+  margin: 10% auto; /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
@@ -74,9 +74,24 @@
   text-align: center;
   padding: 5px 5px;
 }
+/* map tutorial modal */
+.map-tutorial-modal {
+  display: block;
+  position: absolute;
+  height: 250px;
+}
 .game-map {
   width: 100vw;
   height: 250px;
+}
+/* gameplay tutorial modal */
+.gameplay-tutorial-modal {
+  display: block;
+  position: absolute;
+  height: 300px;
+}
+.gameplay-tutorial-modal .modal-content {
+  margin: 5% auto;
 }
 .gameplay-screen {
   position: relative;
@@ -187,6 +202,9 @@
   margin: 5px 5px;
   background: white;
 }
+.resource:focus {
+  outline: none;
+}
 .resource-amount {
   position: absolute;
   background: red;
@@ -197,7 +215,16 @@
   right: 0px;
 }
 
+/* direction tutorial modal */
+.direction-tutorial-modal {
+  display: block;
+  position: absolute;
+}
+.direction-tutorial-modal .modal-content {
+  margin: 3px auto;
+}
 .directions {
+  position: relative;
   width: 100%;
   /* background: #80A1D4; */
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import locationData from '../../locationData';
+import TutorialModal from './tutorialModal';
 import * as _ from 'geolocation-marker';
 
 class Gmap extends Component {
@@ -87,8 +88,13 @@ class Gmap extends Component {
   }
 
   render() {
+    let text = "This is the map overview. Use this map to find out where you are and where you need to go.";
+
     return (
-      <div className='game-map' id="game-map"></div>
+      <div>
+        <div className='game-map' id="game-map"></div>
+        <TutorialModal name='map' text={text}/>
+      </div>
     );
   }
 }
