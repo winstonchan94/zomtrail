@@ -68,7 +68,11 @@ class TakePhotoModal extends Component {
         url: `/api/users/${this.props.userId}`,
         data: { user: editUser }
       }).then(() => {
-        this.props.history.push(`/${this.props.userId}/${this.props.pathId}/waypoints`);
+        if (this.state.path.steps.length == 9) {
+          this.props.history.push(`/${this.props.userId}/story`);
+        } else {
+          this.props.history.push(`/${this.props.userId}/${this.props.pathId}/waypoints`);
+        }
       });
     });
     if (this.state.selectedFile) {
