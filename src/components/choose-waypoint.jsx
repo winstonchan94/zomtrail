@@ -40,11 +40,19 @@ class ChooseWaypoint extends Component {
     axios({
       method: "GET",
       url: `/api/paths/${this.state.pathId}`
-    }).then(res => this.setState({
-      path: res.data[0],
-      lastPoint: res.data[0].steps[res.data[0].steps.length - 1].end_point,
-      secondPoint: res.data[0].steps[res.data[0].steps.length - 1].start_point
-    }))
+    }).then((res) => {
+      if (res.data[0].steps.length > 0) {
+        this.setState({
+          path: res.data[0],
+          lastPoint: res.data[0].steps[res.data[0].steps.length - 1].end_point,
+          secondPoint: res.data[0].steps[res.data[0].steps.length - 1].start_point
+        });
+      } else {
+        this.setState({
+          path: res.data[0]
+        });
+      }
+    })
       .then(() => {
         let end = this.state.path.end_point;
         let start = this.state.path.start_point;
