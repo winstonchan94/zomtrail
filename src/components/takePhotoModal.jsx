@@ -68,7 +68,7 @@ class TakePhotoModal extends Component {
         url: `/api/paths/${this.props.pathId}`,
         data: { path: editPath }
       }).then(result => console.log(result.data));
-      let multiplier = (editPath.steps.length * 0.1) + 1.0;
+      let multiplier = (editPath.steps.length * 0.3) + 1.0;
       editUser.score += (multiplier * 1000);
       this.setState({ user: editUser });
       axios({

@@ -14,6 +14,7 @@ class Story extends Component {
       user: null
     };
   }
+  
   handleNewGame() {
     axios({
       method: "POST",

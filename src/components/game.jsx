@@ -164,7 +164,7 @@ class Game extends Component {
         <div className='game-div'>
           <EventModal />
           <TakePhotoModal pathId={this.state.pathId} userId={this.state.userId}/>
-          <Gmap />
+          <Gmap path={this.state.path}/>
           <div className='gameplay-screen'>
             <TutorialModal name='gameplay' text={gameplayTutorialText}/>/>
             <div className='gameplay-top'>
