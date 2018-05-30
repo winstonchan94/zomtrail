@@ -140,7 +140,7 @@ class Game extends Component {
           <Gmap />
           <div className='gameplay-screen'>
             <div className='gameplay-top'>
-              <DropdownMenu />
+              <DropdownMenu userId={this.state.userId} pathId={this.state.pathId}/>
               <h1 className='gameplay-score'>Score: {this.state.user.score}</h1>
             </div>
             <div className='gameplay-mid'>
