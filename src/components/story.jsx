@@ -4,13 +4,13 @@ import { withRouter } from "react-router-dom";
 class Story extends Component {
   constructor(props) {
     super(props);
-
-    this.handleContiune = this.handleContiune.bind(this);
+    this.userId = this.props.match.params.userId;
+    this.handleContinue = this.handleContinue.bind(this);
     this.logout = this.logout.bind(this);
   }
 
-  handleContiune() {
-    this.props.history.push("/waypoints");
+  handleContinue() {
+    this.props.history.push(`/${this.userId}/waypoints`);
   }
 
   logout () {
@@ -38,9 +38,9 @@ class Story extends Component {
             Logout
           </button>
           <button
-            onClick={this.handleContiune}
+            onClick={this.handleContinue}
             className="continue mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-            Contiune
+            Continue
           </button>
         </div>
       </div>

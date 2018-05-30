@@ -11,9 +11,9 @@ const axios = require('axios');
 const port = process.env.PORT || 3000;
 
 const pathRouter = require("./server/routes/paths");
-
+const userRouter = require("./server/routes/user");
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // MongoDB
 const db = process.env.MONGODB_URI || require('./config/db');
@@ -25,6 +25,7 @@ const db = process.env.MONGODB_URI || require('./config/db');
 // routes(router);
 // app.use('/api', router);
 app.use('/api', pathRouter);
+app.use('/api', userRouter);
 
 // app.get('/api', function(req, res, next) {
 //     let data = {
@@ -46,8 +47,7 @@ app.use('/', express.static('public'));
 
 /** set up middlewares */
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+
 // Default every route except the above to serve the index.html
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname + '/public/index.html'));
@@ -62,8 +62,7 @@ const mongoDB = mongoose.connection;
 mongoDB.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // configure the API to use bodyParser and look for JSON data in the request body
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+
 
 app.listen(port, function() {
   console.log('Express server listening on port ' + port);
