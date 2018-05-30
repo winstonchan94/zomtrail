@@ -148,7 +148,7 @@ class Game extends Component {
   }
 
   handleTakePhoto() {
-    if (this.state.path.steps[this.state.path.steps.length - 1].direction.length > 10 && this.state.path.end_point) {
+    if ((this.state.path.steps[this.state.path.steps.length - 1].direction.length > 10) || (!this.state.path.end_point)) {
       document.getElementById('photo-modal')
       .style.display = 'block';
     } else {
