@@ -15,6 +15,11 @@ const userRouter = require("./server/routes/user");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// CLOUDINARY
+console.log("env = " + process.env.CLOUDINARY_URL);
+const CLOUDINARY_URL = process.env.CLOUDINARY_URL ||
+ require('../../config/cloudinary.js');
+
 // MongoDB
 const db = process.env.MONGODB_URI || require('./config/db');
 
