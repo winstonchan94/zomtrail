@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import axios from 'axios';
-const CLOUDINARY_URL = require('../../config/cloudinary.js');
+const CLOUDINARY_URL = process.env.CLOUDINARY_URL || require('../../config/cloudinary.js');
 
 class TakePhotoModal extends Component {
 
@@ -46,8 +46,8 @@ class TakePhotoModal extends Component {
     formData.append('file', this.state.selectedFile);
     formData.append('upload_preset', "mq30rlbh");
     axios({
+      url: CLOUDINARY_URL,
       method: 'POST',
-      url: '/uploadPicture',
       headers: {
         "X-Requested-With": "XMLHttpRequest",
         'Content-Type': "application/x-www-form-urlencoded"
