@@ -55,9 +55,9 @@ class Story extends Component {
         </p>
         <div className='continue-buttons'>
           <button
-            onClick={this.handleContiune}
+            onClick={this.handleContinue}
             className="continue mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-            Contiune
+            Continue
           </button>
         </div>
       </div>

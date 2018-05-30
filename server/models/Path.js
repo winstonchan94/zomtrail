@@ -29,7 +29,7 @@ const PathSchema = new Schema({
     start_point: PointSchema,
     end_point: PointSchema,
     steps: [StepSchema],
-    id: Number
+    pathId: Number
   }
 );
 
