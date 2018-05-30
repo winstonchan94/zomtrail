@@ -10,8 +10,8 @@ class TakePhotoModal extends Component {
     this.state = {
       uploadPreset: "mq30rlbh",
       selectedFile: null,
-      path: null,
-      user: null
+      path: this.props.path,
+      user: this.props.user
     };
     this.uploadHandler = this.uploadHandler.bind(this);
     this.fileChangedHandler = this.fileChangedHandler.bind(this);
@@ -19,14 +19,6 @@ class TakePhotoModal extends Component {
   componentDidMount() {
     let pathId = this.props.pathId;
     let userId = this.props.userId;
-    axios({
-      method: 'GET',
-      url: `/api/paths/${pathId}`
-    }).then(res => this.setState({ path: res.data[0] }));
-    axios({
-      method: 'GET',
-      url: `/api/users/${userId}`
-    }).then(res => this.setState({ user: res.data }));
   }
 
   handleCloseModal() {
@@ -76,9 +68,7 @@ class TakePhotoModal extends Component {
         url: `/api/users/${this.props.userId}`,
         data: { user: editUser }
       }).then(() => {
-        if (!this.state.path.end_point) {
-          this.props.history.push(`/${this.props.userId}/${this.props.pathId}/waypoints`);
-        }
+        this.props.history.push(`/${this.props.userId}/${this.props.pathId}/waypoints`);
       });
     });
     if (this.state.selectedFile) {
