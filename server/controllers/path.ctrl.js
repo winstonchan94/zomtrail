@@ -18,7 +18,7 @@ exports.apiPost = (req, res) => {
   });
 };
 exports.apiGetOne = (req, res) => {
-  Path.findById(req.params.id, function(err, path) {
+  Path.find({pathId: req.params.pathId}, function(err, path) {
     if (err) {
       res.send(err);
     } else {

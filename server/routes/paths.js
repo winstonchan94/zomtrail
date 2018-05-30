@@ -9,8 +9,8 @@ router.route('/paths')
   .delete(paths.apiDeleteAll);
 
 
-router.route('/paths/:path_id')
-  .get(paths.getOne)
+router.route('/paths/:pathId')
+  .get(paths.apiGetOne)
   .delete(paths.apiDelete);
 
 //
