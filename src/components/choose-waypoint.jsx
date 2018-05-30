@@ -82,12 +82,11 @@ class ChooseWaypoint extends Component {
         let emptyStep = {
           start_point: point,
           end_point: null,
-          directions: null
+          direction: ""
         };
         let confirmed = confirm(`Do you want to go to ${point.description} next?`);
         if (confirmed) {
           let editPath = this.state.path;
-
           if (!this.state.path.start_point) {
             editPath.start_point = point;
             editPath.steps.push(emptyStep);
@@ -106,8 +105,7 @@ class ChooseWaypoint extends Component {
             method: 'PATCH',
             url: `/api/paths/${this.state.pathId}`,
             data: { path: editPath }
-          }).then(res => console.log(res));
-          // this.props.history.push(`/${this.userId}/${this.state.pathId}/game`);
+          }).then(() => this.props.history.push(`/${this.userId}/${this.state.pathId}/game`));
         }
         // infowindow.open(map, marker);
       });
