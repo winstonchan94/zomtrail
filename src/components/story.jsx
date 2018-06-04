@@ -14,7 +14,7 @@ class Story extends Component {
       user: null
     };
   }
-  
+
   handleNewGame() {
     axios({
       method: "POST",
@@ -96,6 +96,7 @@ class Story extends Component {
 
   render() {
     let continueButton;
+    let gameWonMessage = (<p>Congratulations! You've finished a max length journey and can now start a new game!</p>); 
     if (this.state.user && this.state.path) {
       if ((this.state.user.currentPathId > -1) && (this.state.path.steps.length < 9)) {
         continueButton = (
