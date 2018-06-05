@@ -128,7 +128,7 @@ class ChooseWaypoint extends Component {
                   end_point: null,
                   direction: ""
                 };
-                let confirmed = confirm(`Do you want to go to ${point.description} next?`);
+                let confirmed = confirm(`Do you want to go to ${point.description} at ${point.address} next?`);
                 if (confirmed) {
                   let editPath = this.state.path;
                   if (!this.state.path.start_point) {
