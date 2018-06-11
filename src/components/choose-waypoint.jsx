@@ -120,7 +120,7 @@ class ChooseWaypoint extends Component {
               const infowindow = new gmaps.InfoWindow({
                   content: contentString
                 });
-
+//hello
               marker.addListener('click', () => {
                 // map.panTo(pos);
                 let emptyStep = {
