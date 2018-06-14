@@ -88,7 +88,26 @@ class Story extends Component {
         axios({
           method: "GET",
           url: `/api/paths/${this.state.user.currentPathId}`
-        }).then(data => this.setState({ path: data.data[0], pathId: this.state.user.currentPathId }));
+        }).then((data) => {
+          if (data) {
+            this.setState({ path: data.data[0], pathId: this.state.user.currentPathId });
+          } else {
+            axios({
+              method: "POST",
+              url: "/api/paths",
+              data: {
+                path: {
+                  start_point: null,
+                  end_point: null,
+                  steps: [],
+                  pathId: Math.floor(Math.random() * 100000000)
+                }
+              }
+            }).then((result) => {
+              this.setState({ path: result.data, pathId: result.data.pathId });
+            });
+          }
+        });
       }
     });
 
@@ -96,7 +115,7 @@ class Story extends Component {
 
   render() {
     let continueButton;
-    let gameWonMessage = (<p>Congratulations! You've finished a max length journey and can now start a new game! Enjoy!</p>); 
+    let gameWonMessage = (<p>Congratulations! You've finished a max length journey and can now start a new game! Enjoy!</p>);
     if (this.state.user && this.state.path) {
       if ((this.state.user.currentPathId > -1) && (this.state.path.steps.length < 9)) {
         continueButton = (
