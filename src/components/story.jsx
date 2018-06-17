@@ -13,6 +13,7 @@ class Story extends Component {
       pathId: null,
       user: null
     };
+    this.dingLa = "";
   }
 
   handleNewGame() {
